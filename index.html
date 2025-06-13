@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Mombasa Marine Supply | Professional Ship Chandlery Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C3E50',
+                        accent: '#F39C12',
+                        darkblue: '#1A2634',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Responsive container and section padding */
+        .container {
+            width: 100%;
+            max-width: 1440px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        @media (min-width: 640px) {
+            .container { padding-left: 2rem; padding-right: 2rem; }
+        }
+        @media (min-width: 1024px) {
+            .container { padding-left: 3rem; padding-right: 3rem; }
+        }
+
+        /* Navbar: Hamburger on <1024px, full nav on >=1024px */
+        nav, #mobile-menu-button { transition: all 0.3s; }
+        @media (max-width: 1023px) {
+            nav { display: none !important; }
+            #mobile-menu-button { display: inline-block !important; }
+        }
+        @media (min-width: 1024px) {
+            nav { display: flex !important; }
+            #mobile-menu-button { display: none !important; }
+        }
+
+        /* Mobile menu: full width, overlay, scrollable, with extra padding on mobile */
+        #mobile-menu {
+            background: rgba(44, 62, 80, 0.98);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100vw;
+            z-index: 100;
+            padding-bottom: 2rem;
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+        @media (min-width: 640px) {
+            #mobile-menu {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            #mobile-menu { display: none !important; }
+        }
+
+        /* Modal: Responsive padding and scroll */
+        .modal-content {
+            width: 100%;
+            max-width: 48rem;
+            background: #fff;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 32px rgba(44,62,80,0.18);
+            padding: 0.5rem;
+            position: relative;
+            max-height: 95vh;
+            overflow-y: auto;
+        }
+        @media (min-width: 640px) {
+            .modal-content { padding: 1.5rem; }
+        }
+        @media (min-width: 768px) {
+            .modal-content { padding: 2rem; }
+        }
+        @media (min-width: 1280px) {
+            .modal-content { padding: 2.5rem; }
+        }
+
+        /* Modal overlay always covers full screen */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: auto;
+        }
+
+        /* Modal close button always visible and clickable */
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: #6b7280;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .modal-close:hover { color: #F39C12; }
+
+        /* Responsive heading sizes */
+        h1, .text-4xl { font-size: 2.25rem; }
+        h2, .text-3xl { font-size: 1.75rem; }
+        @media (min-width: 640px) {
+            h1, .text-4xl { font-size: 3rem; }
+            h2, .text-3xl { font-size: 2.25rem; }
+        }
+        @media (min-width: 1024px) {
+            h1, .text-4xl { font-size: 3.75rem; }
+            h2, .text-3xl { font-size: 2.5rem; }
+        }
+
+        /* Section spacing for all screens */
+        section, .section {
+            padding-top: 2.5rem;
+            padding-bottom: 2.5rem;
+        }
+        @media (min-width: 640px) {
+            section, .section { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+        @media (min-width: 1280px) {
+            section, .section { padding-top: 6rem; padding-bottom: 6rem; }
+        }
+
+        /* Prevent modal content from touching screen edges */
+        @media (max-width: 639px) {
+            .modal-content { margin: 1rem; }
+        }
+
+        /* Ensure no horizontal scroll on TVs and large screens */
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('https://images.unsplash.com/photo-1581092921461-39b8d5048a82?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .category-card {
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .maritime-icon {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .stats-container {
+            background: rgba(26, 38, 52, 0.85);
+        }
+        
+        .port-service-image {
+            transition: all 0.3s ease;
+        }
+        
+        .port-service-image:hover {
+            transform: scale(1.03);
+        }
+
+        /* Mobile menu button styles */
+        #mobile-menu-button {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+            background: transparent;
+            transition: background 0.2s, color 0.2s;
+        }
+        #mobile-menu-button:active,
+        #mobile-menu-button:focus,
+        #mobile-menu-button:hover {
+            background: #F39C12;
+            color: #2C3E50;
+        }
+
+        /* Page Loading Bar */
+        #scroll-progress-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 5px;
+            z-index: 9999;
+            background: transparent;
+            pointer-events: none;
+        }
+        #scroll-progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #F39C12, #2C3E50, #1A2634, #F39C12);
+            border-radius: 2px;
+            transition: width 0.2s cubic-bezier(.4,2,.6,1);
+        }
+        header.sticky, header[style*="position:sticky"] {
+            position: sticky !important;
+            top: 0;
+            z-index: 1050;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
+</head>
+<body class="font-sans">
+    <!-- Page Loading Bar -->
+    <div id="scroll-progress-bg"><div id="scroll-progress-bar"></div></div>
+
+    <!-- Navigation -->
+    <header class="bg-primary text-white sticky top-0 z-50 shadow-lg" style="position:sticky;top:0;z-index:1050;">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-anchor text-accent text-2xl"></i>
+                    <a href="index.html" class="text-xl font-bold">Mombasa Marine Supply</a>
+                </div>
+                
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="hover:text-accent transition">Home</a>
+                    <a href="#services" class="hover:text-accent transition">Services</a>
+                    <a href="#equipment" class="hover:text-accent transition">Equipment</a>
+                    <a href="#port-services" class="hover:text-accent transition">Port Services</a>
+                    <a href="#about" class="hover:text-accent transition">About</a>
+                    <a href="#contact" class="hover:text-accent transition">Contact</a>
+                </nav>
+                
+                <div class="hidden lg:flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-phone"></i>
+                        <span>+254 700 123 456</span>
+                    </div>
+                    <a href="javascript:void(0)" id="open-pricelist-modal" class="bg-accent text-primary px-4 py-2 rounded-md font-medium hover:bg-yellow-600 transition">Request Quote</a>
+                </div>
+                
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none p-3 rounded transition hover:bg-accent hover:text-primary">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="hover:text-accent transition">Home</a>
+                    <a href="#services" class="hover:text-accent transition">Services</a>
+                    <a href="#equipment" class="hover:text-accent transition">Equipment</a>
+                    <a href="#port-services" class="hover:text-accent transition">Port Services</a>
+                    <a href="#about" class="hover:text-accent transition">About</a>
+                    <a href="#contact" class="hover:text-accent transition">Contact</a>
+                    <div class="pt-2 border-t border-gray-700">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-phone"></i>
+                            <span>+254 700 123 456</span>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" id="open-pricelist-modal-mobile" class="bg-accent text-primary px-4 py-2 rounded-md font-medium hover:bg-yellow-600 transition">Request Quote</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg text-white py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Professional Ship Chandlery Services</h1>
+                <p class="text-xl mb-8">Complete marine supplies and provisions for vessels at Port of Mombasa</p>
+                
+                <div class="stats-container p-6 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">15+</p>
+                        <p>Years Experience</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">500+</p>
+                        <p>Vessels Served</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">24/7</p>
+                        <p>Service</p>
+                    </div>
+                </div>
+                
+                <a href="#services" class="bg-accent text-primary px-8 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">View Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Catalog Section -->
+    <section id="services" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Our Supply Categories</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Fresh Provisions -->
+                <div class="category-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                         alt="Fresh Provisions" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-carrot text-accent text-xl mr-2"></i>
+                            <h3 class="text-xl font-semibold">Fresh Provisions</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">High-quality vegetables, fruits, meats and dairy delivered fresh to your vessel.</p>
+                        <a href="provision.html" class="text-accent font-medium hover:underline">Learn more</a>
+                    </div>
+                </div>
+                
+                <!-- Technical Equipment -->
+                <div class="category-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1619441207978-3d326c46e2c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" 
+                         alt="Technical Equipment" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-cogs text-accent text-xl mr-2"></i>
+                            <h3 class="text-xl font-semibold">Technical Equipment</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Marine hardware, spare parts and deck supplies for all vessel types.</p>
+                        <a href="technical.html" class="text-accent font-medium hover:underline">Learn more</a>
+                    </div>
+                </div>
+                
+                <!-- Gas & Fuel Services -->
+                <div class="category-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Gas & Fuel Services" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-fire text-accent text-xl mr-2"></i>
+                            <h3 class="text-xl font-semibold">Gas & Fuel Services</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">LPG cylinders, refueling equipment and marine fuel delivery services.</p>
+                        <a href="gas-fuel.html" class="text-accent font-medium hover:underline">Learn more</a>
+                    </div>
+                </div>
+                
+                <!-- Laundry & Cleaning -->
+                <div class="category-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1595521969746-9b30f0e15029?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Laundry & Cleaning" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-broom text-accent text-xl mr-2"></i>
+                            <h3 class="text-xl font-semibold">Laundry & Cleaning</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Professional laundry facilities and comprehensive cleaning supplies.</p>
+                        <a href="laundry.html" class="text-accent font-medium hover:underline">Learn more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="About Mombasa Marine Supply" class="w-full rounded-lg shadow-xl port-service-image">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 text-primary">About Mombasa Marine Supply</h2>
+                    <p class="text-gray-600 mb-6">Founded in 2008, Mombasa Marine Supply has grown to become the premier ship chandlery service provider at the Port of Mombasa. Our team of maritime professionals brings decades of combined experience in vessel provisioning and technical supply.</p>
+                    <p class="text-gray-600 mb-6">We understand the unique challenges of marine operations and are committed to delivering high-quality supplies right when you need them. Our 24/7 operation ensures you're never left waiting for essential provisions.</p>
+                    
+                    <div class="bg-primary text-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-certificate text-accent text-xl mr-2"></i>
+                            <h3 class="text-xl font-semibold">Our Certifications</h3>
+                        </div>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                                <span>ISO 9001:2015 Certified</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                                <span>Port Authority Approved Vendor</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                                <span>Maritime Safety Certified</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Port Services Section -->
+    <section id="port-services" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Port Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Bunkering Service -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <i class="fas fa-gas-pump text-accent text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Bunkering Services</h3>
+                    <p class="text-gray-600 mb-4">Efficient and safe fuel delivery directly to your vessel with all documentation handled.</p>
+                    <a href="javascript:void(0)" class="text-accent font-medium hover:underline" data-schedule-fueling>Schedule fueling</a>
+                </div>
+                
+                <!-- Waste Disposal -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <i class="fas fa-trash text-accent text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Waste Disposal</h3>
+                    <p class="text-gray-600 mb-4">Environmentally responsible disposal of all vessel waste in compliance with regulations.</p>
+                    <a href="javascript:void(0)" class="text-accent font-medium hover:underline" data-arrange-disposal>Arrange disposal</a>
+                </div>
+                
+                <!-- Crew Transportation -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <i class="fas fa-shuttle-van text-accent text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Crew Transportation</h3>
+                    <p class="text-gray-600 mb-4">Reliable crew change services with fully licensed and insured ground transportation.</p>
+                    <a href="javascript:void(0)" class="text-accent font-medium hover:underline" data-book-transport>Book transport</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Projects Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+                    <h2 class="text-3xl font-bold mb-6 text-primary">Recent Supply Operations</h2>
+                    <p class="text-gray-600 mb-6">Our dedicated team has successfully completed supply operations for vessels of all sizes at Port of Mombasa. We pride ourselves on timely deliveries that meet the highest quality standards.</p>
+                    <p class="text-gray-600 mb-8">From large container ships to private yachts, we adapt our services to meet your specific requirements, ensuring your operations continue without interruption.</p>
+                    <a href="portfolio.html" class="bg-accent text-primary px-6 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">View Our Portfolio</a>
+                </div>
+                <div class="lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Container Ship Supply" class="w-full h-64 object-cover rounded-lg port-service-image">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 rounded-b-lg">
+                            <h3 class="text-white font-semibold">Maersk Vessel Provisioning</h3>
+                            <p class="text-white/80 text-sm">Full fresh provisions for 25 crew members</p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1531835551805-16d8645f3113?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" 
+                             alt="Yacht Supply" class="w-full h-64 object-cover rounded-lg port-service-image">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 rounded-b-lg">
+                            <h3 class="text-white font-semibold">Luxury Yacht Service</h3>
+                            <p class="text-white/80 text-sm">Premium provisions and deck equipment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-primary text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-darkblue p-8 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-accent mr-4">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Captain Johnson" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl">Captain Johnson</h3>
+                            <p class="text-accent">Master Mariner, M/V Evergreen</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-accent"></i>
+                        <i class="fas fa-star text-accent"></i>
+                        <i class="fas fa-star text-accent"></i>
+                        <i class="fas fa-star text-accent"></i>
+                        <i class="fas fa-star text-accent"></i>
+                    </div>
+                    <p class="italic mb-4">"Mombasa Marine Supply has consistently provided top-quality provisions during our regular port calls. Their fresh produce is always of the highest standard, and their deliveries are never late."</p>
+                    <div class="flex justify-end">
+                        <i class="fas fa-quote-right text-accent text-2xl"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-darkblue p-8 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-accent mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Chief Officer Rodriguez" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl">Chief Officer Rodriguez</h3>
+                            <p class="text-accent">NYK Line</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-accent"></i>
+                        <i class="fas fa-star text-accent"></i>
+                        <i class="fas fa-star text-accent"></i>
+                        <i class="fas fa-star text-accent"></i>
+                        <i class="fas fa-star text-accent"></i>
+                    </div>
+                    <p class="italic mb-4">"When we need urgent technical parts, Mombasa Marine Supply always delivers. Their knowledge of marine equipment is impressive, and they've saved us from delays on multiple occasions."</p>
+                    <div class="flex justify-end">
+                        <i class="fas fa-quote-right text-accent text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-12 text-primary">Request a Quote</h2>
+                
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:w-1/2 bg-primary text-white p-8">
+                            <h3 class="text-xl font-bold mb-4">Contact Information</h3>
+                            <div class="mb-6">
+                                <p class="font-semibold mb-1">Address:</p>
+                                <p>Port of Mombasa, Berth 12, Mombasa, Kenya</p>
+                            </div>
+                            <div class="mb-6">
+                                <p class="font-semibold mb-1">Phone:</p>
+                                <p>+254 700 123 456</p>
+                            </div>
+                            <div class="mb-6">
+                                <p class="font-semibold mb-1">Email:</p>
+                                <p>contact@mombasamarinesupply.com</p>
+                            </div>
+                            <div class="mb-6">
+                                <p class="font-semibold mb-1">Operating Hours:</p>
+                                <p>24/7 Service</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-4">Follow Us</h4>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="text-white hover:text-accent transition">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" class="text-white hover:text-accent transition">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="text-white hover:text-accent transition">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="#" class="text-white hover:text-accent transition">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 p-8">
+                            <form>
+                                <div class="mb-4">
+                                    <label for="name" class="block text-gray-700 mb-2">Full Name</label>
+                                    <input type="text" id="name" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="email" class="block text-gray-700 mb-2">Email</label>
+                                    <input type="email" id="email" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="phone" class="block text-gray-700 mb-2">Phone</label>
+                                    <input type="tel" id="phone" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="vessel" class="block text-gray-700 mb-2">Vessel Name</label>
+                                    <input type="text" id="vessel" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="service" class="block text-gray-700 mb-2">Service Required</label>
+                                    <select id="service" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                                        <option value="">Select a service</option>
+                                        <option value="provisions">Fresh Provisions</option>
+                                        <option value="technical">Technical Equipment</option>
+                                        <option value="fuel">Fuel Services</option>
+                                        <option value="laundry">Laundry Services</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="message" class="block text-gray-700 mb-2">Message</label>
+                                    <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-accent text-primary py-3 px-4 rounded-md font-bold hover:bg-yellow-600 transition">Submit Request</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-darkblue text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-anchor text-accent text-2xl mr-2"></i>
+                        <span class="text-xl font-bold">Mombasa Marine Supply</span>
+                    </div>
+                    <p class="mb-4">Providing excellence in marine supply services since 2008.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-accent transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="provision.html" class="hover:text-accent transition">Fresh Provisions</a></li>
+                        <li><a href="technical.html" class="hover:text-accent transition">Technical Equipment</a></li>
+                        <li><a href="gas-fuel.html" class="hover:text-accent transition">Gas & Fuel Services</a></li>
+                        <li><a href="laundry.html" class="hover:text-accent transition">Laundry & Cleaning</a></li>
+                        <li><a href="bunkering.html" class="hover:text-accent transition">Bunkering Services</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Port Information -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Port Information</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-accent transition">Berth Assignments</a></li>
+                        <li><a href="#" class="hover:text-accent transition">Port Authority</a></li>
+                        <li><a href="#" class="hover:text-accent transition">Customs Procedures</a></li>
+                        <li><a href="#" class="hover:text-accent transition">Port Security</a></li>
+                        <li><a href="#" class="hover:text-accent transition">Vessel Clearance</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+                    <p class="mb-4">Subscribe to our newsletter for the latest updates and offers.</p>
+                    <form>
+                        <div class="flex">
+                            <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md focus:outline-none w-full text-gray-800">
+                            <button class="bg-accent text-primary px-4 py-2 rounded-r-md hover:bg-yellow-600 transition">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Mombasa Marine Supply. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Pricelist Modal -->
+    <div id="pricelist-modal" class="modal-overlay hidden">
+        <div class="modal-content flex flex-col">
+            <button id="close-pricelist-modal" class="modal-close">&times;</button>
+            <div class="flex flex-col items-center mb-4">
+                <h2 class="text-2xl font-bold text-primary text-center">Mombasa Marine Supply</h2>
+                <div class="text-lg font-semibold text-gray-700 text-center mb-2">Request Invoice</div>
+            </div>
+            <form id="pricelist-form" class="flex flex-col flex-1" method="POST" action="https://formspree.io/f/your-form-id" enctype="multipart/form-data">
+                <input type="text" id="pricelist-search" placeholder="Search products..." class="mb-4 px-3 py-2 border rounded-md w-full focus:outline-none focus:ring-2 focus:ring-accent" />
+                <div id="items-container" class="overflow-x-auto overflow-y-auto mb-2" style="max-height: 350px;">
+                    <table class="min-w-full text-sm border">
+                        <thead class="sticky top-0 bg-white z-10">
+                            <tr class="bg-primary text-white">
+                                <th class="p-2"></th>
+                                <th class="p-2">Product</th>
+                                <th class="p-2">Unit</th>
+                                <th class="p-2">Quantity</th>
+                                <th class="p-2">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="product-table-body"></tbody>
+                    </table>
+                    <!-- Custom Items Section -->
+                    <div class="text-xs text-gray-500 mt-2 mb-2">Can't find your item? Add it below as a custom request.</div>
+                    <table class="min-w-full text-sm border" id="custom-items-table">
+                        <tbody id="custom-items-body">
+                            <!-- Custom item rows will be injected here -->
+                        </tbody>
+                    </table>
+                    <button type="button" id="add-custom-item" class="mt-2 mb-2 px-3 py-1 bg-accent text-primary rounded hover:bg-yellow-600 font-medium">+ Add Custom Item</button>
+                    <!-- Email and Send Request  -->
+                    <div class="flex flex-col gap-2 mt-4 mb-2 px-2">
+                        <input type="email" id="user-email" name="email" placeholder="Your Email (required)" required class="px-3 py-2 border rounded-md w-full focus:outline-none focus:ring-2 focus:ring-accent" />
+                        <button id="send-request-btn" type="submit" class="w-full bg-primary text-white py-3 px-4 rounded-md font-bold hover:bg-accent hover:text-primary transition" disabled>Send Request</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Banner & Confetti -->
+    <div id="success-banner" class="fixed inset-0 bg-black/80 flex flex-col items-center justify-center z-[9999] hidden">
+        <canvas id="confetti-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+        <div class="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center z-10">
+            <h2 class="text-3xl font-bold text-primary mb-4">Request Sent!</h2>
+            <p class="text-lg text-gray-700 mb-2">Thank you for your request. We will contact you soon.</p>
+        </div>
+    </div>
+
+    <!-- Schedule Fueling Modal -->
+    <div id="schedule-fueling-modal" class="modal-overlay hidden">
+        <div class="modal-content flex flex-col">
+            <button type="button" class="modal-close" onclick="closeScheduleModal('schedule-fueling-modal')">&times;</button>
+            <div class="flex flex-col items-center mb-4">
+                <h2 class="text-2xl font-bold text-primary text-center">Mombasa Marine Supply</h2>
+                <div class="text-lg font-semibold text-gray-700 text-center mb-2">Schedule Fueling</div>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8 w-full">
+                <div class="md:w-1/3 w-full mb-6 md:mb-0">
+                    <div class="mb-4">
+                        <p class="font-semibold">Service:</p>
+                        <p>Bunkering / Fuel Delivery</p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="font-semibold">Duration:</p>
+                        <p>30 minutes</p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="font-semibold">Note:</p>
+                        <p>Please select your preferred date and time for fueling. Our team will confirm your booking by email.</p>
+                    </div>
+                </div>
+                <div class="md:w-2/3 w-full flex flex-col">
+                    <form id="fueling-schedule-form" method="POST" action="https://formspree.io/f/your-form-id" class="flex flex-col h-full">
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Select Date</label>
+                            <input type="date" id="fueling-date" name="date" class="border rounded-md px-3 py-2 w-full" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Select Time</label>
+                            <select id="fueling-time" name="time" class="border rounded-md px-3 py-2 w-full" required>
+                                <option value="">Choose a time</option>
+                                <option>09:00 AM</option>
+                                <option>09:30 AM</option>
+                                <option>10:00 AM</option>
+                                <option>10:30 AM</option>
+                                <option>11:00 AM</option>
+                                <option>11:30 AM</option>
+                                <option>12:00 PM</option>
+                                <option>12:30 PM</option>
+                                <option>01:00 PM</option>
+                                <option>01:30 PM</option>
+                                <option>02:00 PM</option>
+                                <option>02:30 PM</option>
+                                <option>03:00 PM</option>
+                                <option>03:30 PM</option>
+                                <option>04:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Your Email</label>
+                            <input type="email" id="fueling-email" name="email" class="border rounded-md px-3 py-2 w-full" required>
+                        </div>
+                        <button type="submit" class="bg-primary text-white py-3 px-4 rounded-md font-bold hover:bg-accent hover:text-primary transition w-full">Confirm Schedule</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Arrange Disposal Modal -->
+    <div id="arrange-disposal-modal" class="modal-overlay hidden">
+        <div class="modal-content flex flex-col">
+            <button type="button" class="modal-close" onclick="closeScheduleModal('arrange-disposal-modal')">&times;</button>
+            <div class="flex flex-col items-center mb-4">
+                <h2 class="text-2xl font-bold text-primary text-center">Mombasa Marine Supply</h2>
+                <div class="text-lg font-semibold text-gray-700 text-center mb-2">Arrange Disposal</div>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8 w-full">
+                <div class="md:w-1/3 w-full mb-6 md:mb-0">
+                    <div class="mb-4">
+                        <p class="font-semibold">Service:</p>
+                        <p>Waste Disposal</p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="font-semibold">Duration:</p>
+                        <p>30 minutes</p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="font-semibold">Note:</p>
+                        <p>Select your preferred date and time for waste disposal. Our team will confirm your booking by email.</p>
+                    </div>
+                </div>
+                <div class="md:w-2/3 w-full flex flex-col">
+                    <form id="disposal-schedule-form" method="POST" action="https://formspree.io/f/your-form-id" class="flex flex-col h-full">
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Select Date</label>
+                            <input type="date" id="disposal-date" name="date" class="border rounded-md px-3 py-2 w-full" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Select Time</label>
+                            <select id="disposal-time" name="time" class="border rounded-md px-3 py-2 w-full" required>
+                                <option value="">Choose a time</option>
+                                <option>09:00 AM</option>
+                                <option>09:30 AM</option>
+                                <option>10:00 AM</option>
+                                <option>10:30 AM</option>
+                                <option>11:00 AM</option>
+                                <option>11:30 AM</option>
+                                <option>12:00 PM</option>
+                                <option>12:30 PM</option>
+                                <option>01:00 PM</option>
+                                <option>01:30 PM</option>
+                                <option value="02:00 PM">02:00 PM</option>
+                                <option value="02:30 PM">02:30 PM</option>
+                                <option value="03:00 PM">03:00 PM</option>
+                                <option value="03:30 PM">03:30 PM</option>
+                                <option value="04:00 PM">04:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Your Email</label>
+                            <input type="email" id="disposal-email" name="email" class="border rounded-md px-3 py-2 w-full" required>
+                        </div>
+                        <button type="submit" class="bg-primary text-white py-3 px-4 rounded-md font-bold hover:bg-accent hover:text-primary transition w-full">Confirm Schedule</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Book Transportation Modal -->
+    <div id="book-transport-modal" class="modal-overlay hidden">
+        <div class="modal-content flex flex-col">
+            <button type="button" class="modal-close" onclick="closeScheduleModal('book-transport-modal')">&times;</button>
+            <div class="flex flex-col items-center mb-4">
+                <h2 class="text-2xl font-bold text-primary text-center">Mombasa Marine Supply</h2>
+                <div class="text-lg font-semibold text-gray-700 text-center mb-2">Book Transportation</div>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8 w-full">
+                <div class="md:w-1/3 w-full mb-6 md:mb-0">
+                    <div class="mb-4">
+                        <p class="font-semibold">Service:</p>
+                        <p>Crew Transportation</p                    </div>
+                    <div class="mb-4">
+                        <p class="font-semibold">Duration:</p>
+                        <p>30 minutes</p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="font-semibold">Note:</p>
+                        <p>Select your preferred date and time for crew transport. Our team will confirm your booking by email.</p>
+                    </div>
+                </div>
+                <div class="md:w-2/3 w-full flex flex-col">
+                    <form id="transport-schedule-form" method="POST" action="https://formspree.io/f/your-form-id" class="flex flex-col h-full">
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Select Date</label>
+                            <input type="date" id="transport-date" name="date" class="border rounded-md px-3 py-2 w-full" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Select Time</label>
+                            <select id="transport-time" name="time" class="border rounded-md px-3 py-2 w-full" required>
+                                <option value="">Choose a time</option>
+                                <option>09:00 AM</option>
+                                <option>09:30 AM</option>
+                                <option>10:00 AM</option>
+                                <option>10:30 AM</option>
+                                <option>11:00 AM</option>
+                                <option>11:30 AM</option>
+                                <option>12:00 PM</option>
+                                <option>12:30 PM</option>
+                                <option>01:00 PM</option>
+                                <option>01:30 PM</option>
+                                <option>02:00 PM</option>
+                                <option>02:30 PM</option>
+                                <option>03:00 PM</option>
+                                <option>03:30 PM</option>
+                                <option>04:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Your Email</label>
+                            <input type="email" id="transport-email" name="email" class="border rounded-md px-3 py-2 w-full" required>
+                        </div>
+                        <button type="submit" class="bg-primary text-white py-3 px-4 rounded-md font-bold hover:bg-accent hover:text-primary transition w-full">Confirm Schedule</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+
+    <script>
+    let ITEMS = [];
+    let FILTERED_ITEMS = [];
+    const itemsContainer = document.getElementById('items-container');
+    const searchInput = document.getElementById('pricelist-search');
+
+    // Modal logic
+    const pricelistModal = document.getElementById('pricelist-modal');
+    const openBtn = document.getElementById('open-pricelist-modal');
+    const openBtnMobile = document.getElementById('open-pricelist-modal-mobile');
+    const closeBtn = document.getElementById('close-pricelist-modal');
+
+    function showModal() {
+        pricelistModal.classList.remove('hidden');
+    }
+    function hideModal() {
+        pricelistModal.classList.add('hidden');
+    }
+    openBtn.addEventListener('click', showModal);
+    if (openBtnMobile) openBtnMobile.addEventListener('click', showModal);
+    closeBtn.addEventListener('click', hideModal);
+    window.addEventListener('click', e => { if (e.target === pricelistModal) hideModal(); });
+
+    // Search/filter logic
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const q = this.value.trim().toLowerCase();
+            FILTERED_ITEMS = ITEMS.filter(item =>
+                (item['PRODUCT DESCRIPTION'] || '').toLowerCase().includes(q)
+            );
+            renderProductTable();
+            updateTotal();
+            renderCustomItems();
+        });
+    }
+
+    function renderProductTable() {
+        const tbody = document.getElementById('product-table-body');
+        tbody.innerHTML = '';
+        const data = (typeof FILTERED_ITEMS !== 'undefined' && searchInput.value) ? FILTERED_ITEMS : ITEMS;
+        data.forEach((item, i) => {
+            tbody.innerHTML += `
+                <tr>
+                    <td class="p-2 text-center">
+                        <input type="checkbox" class="item-checkbox" data-idx="${i}">
+                    </td>
+                    <td class="p-2">${item['PRODUCT DESCRIPTION']}</td>
+                    <td class="p-2">${item['UNIT']}</td>
+                    <td class="p-2">
+                        <input type="number" min="1" value="1" class="item-qty border rounded-md px-2 py-1 w-20" data-idx="${i}" disabled>
+                    </td>
+                    <td class="p-2 item-line-total" id="line-total-${i}">0 ${item['UNIT'] || ''}</td>
+                </tr>
+            `;
+        });
+
+        // Checkbox logic
+        tbody.querySelectorAll('.item-checkbox').forEach(cb => {
+            cb.onchange = function() {
+                const idx = this.getAttribute('data-idx');
+                const qtyInput = tbody.querySelector(`.item-qty[data-idx="${idx}"]`);
+                qtyInput.disabled = !this.checked;
+                updateTotal();
+            };
+        });
+        // Quantity logic
+        tbody.querySelectorAll('.item-qty').forEach(input => {
+            input.oninput = updateTotal;
+        });
+        renderCustomItems();
+    }
+
+    let customItemCount = 1;
+    function renderCustomItems() {
+        const customBody = document.getElementById('custom-items-body');
+        if (!customBody) return;
+        if (customBody.children.length === 0) addCustomItemRow(); // Always have at least one row
+        // Update event listeners for all custom rows
+        Array.from(customBody.children).forEach(row => {
+            const cb = row.querySelector('.custom-item-checkbox');
+            const desc = row.querySelector('.custom-item-desc');
+            const unit = row.querySelector('.custom-item-unit');
+            const qty = row.querySelector('.custom-item-qty');
+            cb.onchange = function() {
+                const enabled = cb.checked;
+                desc.disabled = !enabled;
+                unit.disabled = !enabled;
+                qty.disabled = !enabled;
+                updateTotal();
+            };
+            desc.oninput = updateTotal;
+            unit.oninput = updateTotal;
+            qty.oninput = updateTotal;
+            // Remove row button
+            const removeBtn = row.querySelector('.remove-custom-item');
+            if (removeBtn) {
+                removeBtn.onclick = function() {
+                    row.remove();
+                    updateTotal();
+                };
+            }
+        });
+    }
+
+    function addCustomItemRow() {
+        const customBody = document.getElementById('custom-items-body');
+        const rowId = `custom-${customItemCount++}`;
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="p-2 text-center">
+                <input type="checkbox" class="custom-item-checkbox" data-idx="${rowId}">
+            </td>
+            <td class="p-2">
+                <input type="text" class="custom-item-desc border rounded-md px-2 py-1 w-full" placeholder="Other item (describe)" disabled>
+            </td>
+            <td class="p-2">
+                <input type="text" class="custom-item-unit border rounded-md px-2 py-1 w-20" placeholder="Unit" disabled>
+            </td>
+            <td class="p-2">
+                <input type="number" min="1" value="1" class="custom-item-qty border rounded-md px-2 py-1 w-20" disabled>
+            </td>
+            <td class="p-2 item-line-total" id="line-total-${rowId}">0</td>
+            <td class="p-2">
+                <button type="button" class="remove-custom-item text-red-500 hover:text-red-700 text-lg" title="Remove">&times;</button>
+            </td>
+        `;
+        customBody.appendChild(row);
+        renderCustomItems();
+    }
+
+    document.getElementById('add-custom-item').addEventListener('click', addCustomItemRow);
+
+    function updateTotal() {
+        const tbody = document.getElementById('product-table-body');
+        tbody.querySelectorAll('.item-checkbox').forEach(cb => {
+            const idx = cb.getAttribute('data-idx');
+            const qtyInput = tbody.querySelector(`.item-qty[data-idx="${idx}"]`);
+            const lineTotalCell = tbody.querySelector(`#line-total-${idx}`);
+            let lineTotal = 0;
+            let unit = ITEMS[idx]['UNIT'] || '';
+            if (cb.checked) {
+                const qty = parseInt(qtyInput.value) || 1;
+                lineTotal = qty;
+            }
+            lineTotalCell.textContent = `${lineTotal} ${unit}`;
+        });
+        // Custom rows
+        const customRows = document.querySelectorAll('#custom-items-body tr');
+        customRows.forEach(row => {
+            const cb = row.querySelector('.custom-item-checkbox');
+            const unit = row.querySelector('.custom-item-unit');
+            const qty = row.querySelector('.custom-item-qty');
+            const lineTotalCell = row.querySelector('.item-line-total');
+            if (cb && cb.checked) {
+                const q = parseInt(qty.value) || 1;
+                const u = unit.value || '';
+                lineTotalCell.textContent = `${q} ${u}`;
+            } else if (lineTotalCell) {
+                lineTotalCell.textContent = '0';
+            }
+        });
+    }
+
+    // Email validation and button enable
+    const userEmailInput = document.getElementById('user-email');
+    const sendBtn = document.getElementById('send-request-btn');
+    userEmailInput.addEventListener('input', function() {
+        sendBtn.disabled = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
+    });
+
+    // Load pricelist.xlsx from media/ directory
+    async function loadPricelist() {
+        const response = await fetch('media/pricelist.xlsx');
+        const arrayBuffer = await response.arrayBuffer();
+        const workbook = XLSX.read(arrayBuffer, {type: 'array'});
+        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+        const json = XLSX.utils.sheet_to_json(sheet);
+        ITEMS = json;
+        FILTERED_ITEMS = ITEMS;
+        renderProductTable();
+        updateTotal();
+        renderCustomItems();
+    }
+
+    // Pricelist Excel export using template.xlsx and send to Formspree
+    document.getElementById('pricelist-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const tbody = document.getElementById('product-table-body');
+        const rows = [];
+        tbody.querySelectorAll('.item-checkbox').forEach(cb => {
+            const idx = cb.getAttribute('data-idx');
+            if (cb.checked) {
+                const item = ITEMS[idx];
+                const qty = parseInt(tbody.querySelector(`.item-qty[data-idx="${idx}"]`).value) || 1;
+                rows.push({
+                    "PRODUCT DESCRIPTION": item['PRODUCT DESCRIPTION'],
+                    "UNIT": item['UNIT'],
+                    "QUANTITY": qty
+                });
+            }
+        });
+        // Add all custom items if present
+        const customRows = document.querySelectorAll('#custom-items-body tr');
+        customRows.forEach(row => {
+            const cb = row.querySelector('.custom-item-checkbox');
+            const desc = row.querySelector('.custom-item-desc');
+            const unit = row.querySelector('.custom-item-unit');
+            const qty = row.querySelector('.custom-item-qty');
+            if (cb && cb.checked && desc.value.trim() && unit.value.trim()) {
+                rows.push({
+                    "PRODUCT DESCRIPTION": desc.value.trim() + " (Custom Request)",
+                    "UNIT": unit.value.trim(),
+                    "QUANTITY": parseInt(qty.value) || 1
+                });
+            }
+        });
+        if (rows.length === 0) {
+            alert("Please select at least one item.");
+            return;
+        }
+        const userEmail = userEmailInput.value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        // Load template.xlsx and fill it
+        const response = await fetch('media/template.xlsx');
+        const arrayBuffer = await response.arrayBuffer();
+        const workbook = new ExcelJS.Workbook();
+        await workbook.xlsx.load(arrayBuffer);
+        const worksheet = workbook.worksheets[0];
+
+        // Start filling from C20 (row 20, column 3)
+        let startRow = 20;
+        rows.forEach((row, i) => {
+            worksheet.getCell(`C${startRow + i}`).value = row["PRODUCT DESCRIPTION"];
+            worksheet.getCell(`D${startRow + i}`).value = row["UNIT"];
+            worksheet.getCell(`F${startRow + i}`).value = row["QUANTITY"];
+        });
+
+        // Convert workbook to Blob
+        const buf = await workbook.xlsx.writeBuffer();
+        const file = new Blob([buf], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+
+        // Send to Formspree
+        const formData = new FormData();
+        formData.append('email', userEmail);
+        formData.append('file', file, 'quotation.xlsx');
+        formData.append('_subject', 'New Quotation Request');
+        formData.append('message', 'Quotation request from website. Please see attached Excel file.');
+
+        sendBtn.disabled = true;
+        sendBtn.textContent = "Sending...";
+
+        try {
+            const res = await fetch('https://formspree.io/f/your-form-id', {
+                method: 'POST',
+                body: formData
+            });
+            if (res.ok) {
+                showSuccessBanner();
+            } else {
+                alert('Failed to send request. Please try again later.');
+            }
+        } catch (err) {
+            alert('Failed to send request. Please try again later.');
+        }
+        sendBtn.disabled = false;
+        sendBtn.textContent = "Send Request";
+    });
+
+    // Success banner and confetti
+    function showSuccessBanner() {
+        const banner = document.getElementById('success-banner');
+        banner.classList.remove('hidden');
+        launchConfetti();
+        setTimeout(() => {
+            banner.classList.add('hidden');
+            hideModal();
+        }, 3500);
+    }
+
+    // Simple confetti (canvas-confetti or similar can be used for better effect)
+    function launchConfetti() {
+        const canvas = document.getElementById('confetti-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particles = [];
+        for (let i = 0; i < 150; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                r: Math.random() * 6 + 4,
+                d: Math.random() * 150,
+                color: `hsl(${Math.random()*360},70%,60%)`,
+                tilt: Math.random() * 10 - 10
+            });
+        }
+        let angle = 0;
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            angle += 0.01;
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, false);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+                p.y += Math.cos(angle + p.d) + 1 + p.r/2;
+                p.x += Math.sin(angle) * 2;
+                if (p.y > canvas.height) {
+                    p.x = Math.random() * canvas.width;
+                    p.y = -10;
+                }
+            }
+            requestAnimationFrame(draw);
+        }
+        draw();
+    }
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', loadPricelist);
+    </script>
+
+    <!-- Schedule Fueling Modal -->
+    <div id="schedule-fueling-modal" class="modal-overlay hidden">
+        <div class="modal-content flex flex-col">
+            <button type="button" class="modal-close" onclick="closeScheduleModal('schedule-fueling-modal')">&times;</button>
+            <div class="flex flex-col items-center mb-4">
+                <h2 class="text-2xl font-bold text-primary text-center">Mombasa Marine Supply</h2>
+                <div class="text-lg font-semibold text-gray-700 text-center mb-2">Schedule Fueling</div>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8 w-full">
+                <div class="md:w-1/3 w-full mb-6 md:mb-0">
+                    <div class="mb-4">
+                        <p class="font-semibold">Service:</p>
+                        <p>Bunkering / Fuel Delivery</p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="font-semibold">Duration:</p>
+                        <p>30 minutes</p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="font-semibold">Note:</p>
+                        <p>Please select your preferred date and time for fueling. Our team will confirm your booking by email.</p>
+                    </div>
+                </div>
+                <div class="md:w-2/3 w-full flex flex-col">
+                    <form id="fueling-schedule-form" method="POST" action="https://formspree.io/f/your-form-id" class="flex flex-col h-full">
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Select Date</label>
+                            <input type="date" id="fueling-date" name="date" class="border rounded-md px-3 py-2 w-full" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Select Time</label>
+                            <select id="fueling-time" name="time" class="border rounded-md px-3 py-2 w-full" required>
+                                <option value="">Choose a time</option>
+                                <option>09:00 AM</option>
+                                <option>09:30 AM</option>
+                                <option>10:00 AM</option>
+                                <option>10:30 AM</option>
+                                <option>11:00 AM</option>
+                                <option>11:30 AM</option>
+                                <option>12:00 PM</option>
+                                <option>12:30 PM</option>
+                                <option>01:00 PM</option>
+                                <option>01:30 PM</option>
+                                <option>02:00 PM</option>
+                                <option>02:30 PM</option>
+                                <option>03:00 PM</option>
+                                <option>03:30 PM</option>
+                                <option>04:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Your Email</label>
+                            <input type="email" id="fueling-email" name="email" class="border rounded-md px-3 py-2 w-full" required>
+                        </div>
+                        <button type="submit" class="bg-primary text-white py-3 px-4 rounded-md font-bold hover:bg-accent hover:text-primary transition w-full">Confirm Schedule</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Arrange Disposal Modal -->
+    <div id="arrange-disposal-modal" class="modal-overlay hidden">
+        <div class="modal-content flex flex-col">
+            <button type="button" class="modal-close" onclick="closeScheduleModal('arrange-disposal-modal')">&times;</button>
+            <div class="flex flex-col items-center mb-4">
+                <h2 class="text-2xl font-bold text-primary text-center">Mombasa Marine Supply</h2>
+                <div class="text-lg font-semibold text-gray-700 text-center mb-2">Arrange Disposal</div>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8 w-full">
+                <div class="md:w-1/3 w-full mb-6 md:mb-0">
+                    <div class="mb-4">
+                        <p class="font-semibold">Service:</p>
+                        <p>Waste Disposal</p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="font-semibold">Duration:</p>
+                        <p>30 minutes</p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="font-semibold">Note:</p>
+                        <p>Select your preferred date and time for waste disposal. Our team will confirm your booking by email.</p>
+                    </div>
+                </div>
+                <div class="md:w-2/3 w-full flex flex-col">
+                    <form id="disposal-schedule-form" method="POST" action="https://formspree.io/f/your-form-id" class="flex flex-col h-full">
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Select Date</label>
+                            <input type="date" id="disposal-date" name="date" class="border rounded-md px-3 py-2 w-full" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Select Time</label>
+                            <select id="disposal-time" name="time" class="border rounded-md px-3 py-2 w-full" required>
+                                <option value="">Choose a time</option>
+                                <option>09:00 AM</option>
+                                <option>09:30 AM</option>
+                                <option>10:00 AM</option>
+                                <option>10:30 AM</option>
+                                <option>11:00 AM</option>
+                                <option>11:30 AM</option>
+                                <option>12:00 PM</option>
+                                <option>12:30 PM</option>
+                                <option>01:00 PM</option>
+                                <option>01:30 PM</option>
+                                <option value="02:00 PM">02:00 PM</option>
+                                <option value="02:30 PM">02:30 PM</option>
+                                <option value="03:00 PM">03:00 PM</option>
+                                <option value="03:30 PM">03:30 PM</option>
+                                <option value="04:00 PM">04:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Your Email</label>
+                            <input type="email" id="disposal-email" name="email" class="border rounded-md px-3 py-2 w-full" required>
+                        </div>
+                        <button type="submit" class="bg-primary text-white py-3 px-4 rounded-md font-bold hover:bg-accent hover:text-primary transition w-full
+                    <div class="mb-4">
+                        <p class="font-semibold">Note:</p>
+                        <p>Select your preferred date and time for crew transport. Our team will confirm your booking by email.</p>
+                    </div>
+                </div>
+                <div class="md:w-2/3 w-full flex flex-col">
+                    <form id="transport-schedule-form" method="POST" action="https://formspree.io/f/your-form-id" class="flex flex-col h-full">
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Select Date</label>
+                            <input type="date" id="transport-date" name="date" class="border rounded-md px-3 py-2 w-full" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Select Time</label>
+                            <select id="transport-time" name="time" class="border rounded-md px-3 py-2 w-full" required>
+                                <option value="">Choose a time</option>
+                                <option>09:00 AM</option>
+                                <option>09:30 AM</option>
+                                <option>10:00 AM</option>
+                                <option>10:30 AM</option>
+                                <option>11:00 AM</option>
+                                <option>11:30 AM</option>
+                                <option>12:00 PM</option>
+                                <option>12:30 PM</option>
+                                <option>01:00 PM</option>
+                                <option>01:30 PM</option>
+                                <option>02:00 PM</option>
+                                <option>02:30 PM</option>
+                                <option>03:00 PM</option>
+                                <option>03:30 PM</option>
+                                <option>04:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-semibold mb-1">Your Email</label>
+                            <input type="email" id="transport-email" name="email" class="border rounded-md px-3 py-2 w-full" required>
+                        </div>
+                        <button type="submit" class="bg-primary text-white py-3 px-4 rounded-md font-bold hover:bg-accent hover:text-primary transition w-full">Confirm Schedule</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Open/close modal helpers
+        function openScheduleModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeScheduleModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        // Attach open handlers to your service links/buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fueling
+            document.querySelectorAll('[data-schedule-fueling]').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openScheduleModal('schedule-fueling-modal');
+                });
+            });
+            // Disposal
+            document.querySelectorAll('[data-arrange-disposal]').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openScheduleModal('arrange-disposal-modal');
+                });
+            });
+            // Transport
+            document.querySelectorAll('[data-book-transport]').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openScheduleModal('book-transport-modal');
+                });
+            });
+            // Close on outside click
+            ['schedule-fueling-modal','arrange-disposal-modal','book-transport-modal'].forEach(id => {
+                const modal = document.getElementById(id);
+                if (modal) {
+                    modal.addEventListener('click', function(e) {
+                    if (e.target === modal) closeScheduleModal(id);
+                });
+            }
+        });
+    });
+    </script>
+</body>
+</html>

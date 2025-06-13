@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Provisions | Mombasa Marine Supply</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C3E50',
+                        accent: '#F39C12',
+                        darkblue: '#1A2634',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .service-hero {
+            background-image: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <header class="bg-primary text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-anchor text-accent text-2xl"></i>
+                    <a href="index.html" class="text-xl font-bold">Mombasa Marine Supply</a>
+                </div>
+                
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="hover:text-accent transition">Home</a>
+                    <a href="#services" class="hover:text-accent transition">Services</a>
+                    <a href="#equipment" class="hover:text-accent transition">Equipment</a>
+                    <a href="#port-services" class="hover:text-accent transition">Port Services</a>
+                    <a href="#about" class="hover:text-accent transition">About</a>
+                    <a href="#contact" class="hover:text-accent transition">Contact</a>
+                </nav>
+                
+                <div class="hidden lg:flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-phone"></i>
+                        <span>+254 700 123 456</span>
+                    </div>
+                    <a href="#contact" class="bg-accent text-primary px-4 py-2 rounded-md font-medium hover:bg-yellow-600 transition">Request Quote</a>
+                </div>
+                
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="hover:text-accent transition">Home</a>
+                    <a href="#services" class="hover:text-accent transition">Services</a>
+                    <a href="#equipment" class="hover:text-accent transition">Equipment</a>
+                    <a href="#port-services" class="hover:text-accent transition">Port Services</a>
+                    <a href="#about" class="hover:text-accent transition">About</a>
+                    <a href="#contact" class="hover:text-accent transition">Contact</a>
+                    <div class="pt-2 border-t border-gray-700">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-phone"></i>
+                            <span>+254 700 123 456</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="bg-accent text-primary px-4 py-2 rounded-md font-medium text-center">Request Quote</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Fresh Provisions Hero -->
+    <section class="service-hero text-white py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Fresh Provisions Service</h1>
+                <p class="text-xl mb-8">Premium quality fresh produce delivered directly to your vessel in Port of Mombasa</p>
+                
+                <div class="bg-darkblue p-6 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">Daily</p>
+                        <p>Market Sourcing</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">100%</p>
+                        <p>Quality Inspected</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">4hr</p>
+                        <p>Delivery Window</p>
+                    </div>
+                </div>
+                
+                <a href="#contact" class="bg-accent text-primary px-8 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">Request Fresh Provisions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fresh Provisions Details -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+                    <img src="https://images.unsplash.com/photo-1566385101042-1a0aa0c1268d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1570&q=80" 
+                         alt="Fresh Produce Selection" class="w-full rounded-lg shadow-lg">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 text-primary">Our Fresh Provisions</h2>
+                    <p class="text-gray-600 mb-6">We provide the highest quality fresh provisions sourced daily from trusted local suppliers and international imports. Our team personally inspects all produce to ensure only the freshest items reach your vessel.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Fruits & Vegetables</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Seasonal selections, tropical fruits, leafy greens, root vegetables</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Meat & Poultry</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Halal certified beef, chicken, lamb from approved suppliers</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Dairy & Eggs</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Fresh milk, cheese, butter, yogurt and free-range eggs</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Bakery & Dry Goods</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Freshly baked bread, pastries, rice, pasta and cereals</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fresh Packaging Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Packaging & Handling</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="service-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <i class="fas fa-box-open text-accent text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Sustainable Packaging</h3>
+                    <p class="text-gray-600">We use environmentally friendly packaging that meets maritime disposal requirements while protecting your provisions during transport.</p>
+                </div>
+                
+                <div class="service-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <i class="fas fa-snowflake text-accent text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Temperature Controlled</h3>
+                    <p class="text-gray-600">Perishable items are transported in insulated containers with ice packs or refrigeration units to maintain optimal freshness.</p>
+                </div>
+                
+                <div class="service-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <i class="fas fa-clipboard-check text-accent text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Hygienic Handling</h3>
+                    <p class="text-gray-600">Our team follows strict food safety protocols with gloves, hair nets, and sanitized equipment during preparation and loading.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fresh Ordering Process -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Ordering Process</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <!-- Timeline -->
+                    <div class="border-l-2 border-accent absolute h-full top-0 left-4"></div>
+                    
+                    <!-- Timeline items -->
+                    <div class="relative mb-8 pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <span class="text-primary font-bold">1</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Request Quote</h3>
+                        <p class="text-gray-600">Contact us with your vessel details, estimated crew size and provisioning requirements.</p>
+                    </div>
+                    
+                    <div class="relative mb-8 pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <span class="text-primary font-bold">2</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Customized Menu</h3>
+                        <p class="text-gray-600">Our chef will work with you to create a customized menu based on crew preferences, duration and storage capacity.</p>
+                    </div>
+                    
+                    <div class="relative mb-8 pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <span class="text-primary font-bold">3</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Final Confirmation</h3>
+                        <p class="text-gray-600">We'll provide a final confirmation with delivery schedule 24 hours prior to port arrival.</p>
+                    </div>
+                    
+                    <div class="relative pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <span class="text-primary font-bold">4</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">On-Time Delivery</h3>
+                        <p class="text-gray-600">Fresh provisions delivered directly to your vessel according to agreed schedule.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <a href="#contact" class="bg-accent text-primary px-8 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">Begin Your Order</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      
+
+    <!-- Footer -->
+    <footer class="bg-darkblue text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-anchor text-accent text-2xl mr-2"></i>
+                        <span class="text-xl font-bold">Mombasa Marine Supply</span>
+                    </div>
+                    <p class="mb-4">Providing excellence in marine supply services since 2008.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-accent transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-accent transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="provision.html" class="hover:text-accent transition">Fresh Provisions</a></li>
+                        <li><a href="technical.html" class="hover:text-accent transition">Technical Equipment</a></li>
+                        <li><a href="gas-fuel.html" class="hover:text-accent transition">Gas & Fuel Services</a></li>
+                        <li><a href="laundry.html" class="hover:text-accent transition">Laundry & Cleaning</a></li>
+                        <li><a href="bunkering.html" class="hover:text-accent transition">Bunkering Services</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Port Information -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Port Information</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-accent transition">Berth Assignments</a></li>
+                        <li><a href="#" class="hover:text-accent transition">Port Authority</a></li>
+                        <li><a href="#" class="hover:text-accent transition">Customs Procedures</a></li>
+                        <li><a href="#" class="hover:text-accent transition">Port Security</a></li>
+                        <li><a href="#" class="hover:text-accent transition">Vessel Clearance</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+                    <p class="mb-4">Subscribe to our newsletter for the latest updates and offers.</p>
+                    <form>
+                        <div class="flex">
+                            <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md focus:outline-none w-full text-gray-800">
+                            <button class="bg-accent text-primary px-4 py-2 rounded-r-md hover:bg-yellow-600 transition">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Mombasa Marine Supply. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
