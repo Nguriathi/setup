@@ -229,6 +229,44 @@
             top: 0;
             z-index: 1050;
         }
+
+        /* Navbar background color */
+        .navbar-bg {
+  background-color: #2C3E50 !important;
+}
+
+/* Make sure body content is not hidden behind navbar */
+body {
+  padding-top: 96px;
+}
+
+/* Carousel styles */
+.carousel-slides {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+.carousel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.4,0,0.2,1);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.carousel-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+.carousel-slide img,
+.carousel-slide video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
     </style>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
@@ -239,83 +277,195 @@
     <div id="scroll-progress-bg"><div id="scroll-progress-bar"></div></div>
 
     <!-- Navigation -->
-    <header class="bg-primary text-white sticky top-0 z-50 shadow-lg" style="position:sticky;top:0;z-index:1050;">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex justify-between items-center">
+    <!-- Sticky Navbar (structure and theming preserved) -->
+<header class="fixed top-0 left-0 w-full z-50 navbar-bg shadow">
+    <div class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-anchor text-accent text-2xl"></i>
+                <a href="index.html" class="text-xl font-bold text-white">Mombasa Marine Supply</a>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="hover:text-accent transition text-white">Home</a>
+                <a href="#services" class="hover:text-accent transition text-white">Services</a>
+                <a href="#equipment" class="hover:text-accent transition text-white">Equipment</a>
+                <a href="#port-services" class="hover:text-accent transition text-white">Port Services</a>
+                <a href="#about" class="hover:text-accent transition text-white">About</a>
+                <a href="#contact" class="hover:text-accent transition text-white">Contact</a>
+            </nav>
+            <div class="hidden lg:flex items-center space-x-4">
                 <div class="flex items-center space-x-2">
-                    <i class="fas fa-anchor text-accent text-2xl"></i>
-                    <a href="index.html" class="text-xl font-bold">Mombasa Marine Supply</a>
+                    <i class="fas fa-phone"></i>
+                    <span>+254 700 123 456</span>
                 </div>
-                
-                <nav class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="hover:text-accent transition">Home</a>
-                    <a href="#services" class="hover:text-accent transition">Services</a>
-                    <a href="#equipment" class="hover:text-accent transition">Equipment</a>
-                    <a href="#port-services" class="hover:text-accent transition">Port Services</a>
-                    <a href="#about" class="hover:text-accent transition">About</a>
-                    <a href="#contact" class="hover:text-accent transition">Contact</a>
-                </nav>
-                
-                <div class="hidden lg:flex items-center space-x-4">
+                <a href="javascript:void(0)" id="open-pricelist-modal" class="bg-accent text-primary px-4 py-2 rounded-md font-medium hover:bg-yellow-600 transition">Request Quote</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none p-3 rounded transition hover:bg-accent hover:text-primary">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+            <div class="flex flex-col space-y-4">
+                <a href="index.html" class="hover:text-accent transition text-white">Home</a>
+                <a href="#services" class="hover:text-accent transition text-white">Services</a>
+                <a href="#equipment" class="hover:text-accent transition text-white">Equipment</a>
+                <a href="#port-services" class="hover:text-accent transition text-white">Port Services</a>
+                <a href="#about" class="hover:text-accent transition text-white">About</a>
+                <a href="#contact" class="hover:text-accent transition text-white">Contact</a>
+                <div class="pt-2 border-t border-gray-700">
                     <div class="flex items-center space-x-2">
                         <i class="fas fa-phone"></i>
                         <span>+254 700 123 456</span>
                     </div>
-                    <a href="javascript:void(0)" id="open-pricelist-modal" class="bg-accent text-primary px-4 py-2 rounded-md font-medium hover:bg-yellow-600 transition">Request Quote</a>
                 </div>
-                
-                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none p-3 rounded transition hover:bg-accent hover:text-primary">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-                <div class="flex flex-col space-y-4">
-                    <a href="index.html" class="hover:text-accent transition">Home</a>
-                    <a href="#services" class="hover:text-accent transition">Services</a>
-                    <a href="#equipment" class="hover:text-accent transition">Equipment</a>
-                    <a href="#port-services" class="hover:text-accent transition">Port Services</a>
-                    <a href="#about" class="hover:text-accent transition">About</a>
-                    <a href="#contact" class="hover:text-accent transition">Contact</a>
-                    <div class="pt-2 border-t border-gray-700">
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-phone"></i>
-                            <span>+254 700 123 456</span>
-                        </div>
-                    </div>
-                    <a href="javascript:void(0)" id="open-pricelist-modal-mobile" class="bg-accent text-primary px-4 py-2 rounded-md font-medium hover:bg-yellow-600 transition">Request Quote</a>
-                </div>
+                <a href="javascript:void(0)" id="open-pricelist-modal-mobile" class="bg-accent text-primary px-4 py-2 rounded-md font-medium hover:bg-yellow-600 transition">Request Quote</a>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-bg text-white py-20 md:py-32">
-        <div class="container mx-auto px-4">
-            <div class="max-w-2xl">
-                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Professional Ship Chandlery Services</h1>
-                <p class="text-xl mb-8">Complete marine supplies and provisions for vessels at Port of Mombasa</p>
-                
-                <div class="stats-container p-6 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="text-center">
-                        <p class="text-accent font-bold text-2xl">15+</p>
-                        <p>Years Experience</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-accent font-bold text-2xl">500+</p>
-                        <p>Vessels Served</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-accent font-bold text-2xl">24/7</p>
-                        <p>Service</p>
-                    </div>
+<!-- Hero Section with random looping carousel (2 images + 1 video) and readable text -->
+<section id="home" class="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden pt-24">
+    <!-- Carousel Background -->
+    <div class="carousel-wrapper absolute inset-0 z-0">
+        <div class="carousel-slides relative w-full h-full"></div>
+    </div>
+    <!-- Hero Content with subtle blurry background -->
+    <div class="relative z-10 w-full flex justify-center items-center">
+        <div class="max-w-2xl w-full mx-4 bg-black/40 backdrop-blur-md p-6 md:p-8 rounded-lg text-center md:text-left">
+            <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4 text-white">Professional Ship Chandlery Services</h1>
+            <p class="text-xl mb-8 text-white">Complete marine supplies and provisions for vessels at Port of Mombasa</p>
+            <div class="stats-container p-4 md:p-6 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="text-center md:text-left">
+                    <p class="text-accent font-bold text-2xl">15+</p>
+                    <p class="text-white">Years Experience</p>
                 </div>
-                
-                <a href="#services" class="bg-accent text-primary px-8 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">View Our Services</a>
+                <div class="text-center md:text-left">
+                    <p class="text-accent font-bold text-2xl">500+</p>
+                    <p class="text-white">Vessels Served</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <p class="text-accent font-bold text-2xl">24/7</p>
+                    <p class="text-white">Service</p>
+                </div>
             </div>
+            <a href="#services" class="bg-accent text-primary px-8 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">View Our Services</a>
         </div>
-    </section>
+    </div>
+</section>
+
+<style>
+/* Navbar background color */
+.navbar-bg {
+  background-color: #2C3E50 !important;
+}
+
+/* Make sure body content is not hidden behind navbar */
+body {
+  padding-top: 96px;
+}
+
+/* Carousel styles */
+.carousel-slides {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+.carousel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.4,0,0.2,1);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.carousel-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+.carousel-slide img,
+.carousel-slide video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+</style>
+
+<script>
+// Mobile menu toggle
+document.getElementById('mobile-menu-button').onclick = function() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+};
+
+// Hero carousel with 2 images and 1 video, random looping
+document.addEventListener('DOMContentLoaded', function () {
+    const slidesData = [
+        {
+            type: 'image',
+            src: 'media/images/ship 1.jpg',
+            alt: 'Ship at Port'
+        },
+        {
+            type: 'image',
+            src: 'media/images/ship 2.jpg',
+            alt: 'Container Terminal'
+        },
+        {
+            type: 'video',
+            src: 'media/videos/hero-video.mp4'
+        }
+    ];
+
+    // Shuffle slides for random order
+    function shuffle(array) {
+        let currentIndex = array.length, randomIndex;
+        while (currentIndex !== 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+        }
+        return array;
+    }
+
+    let slides = shuffle([...slidesData]);
+    let current = 0;
+    const container = document.querySelector('.carousel-slides');
+
+    // Create slide elements
+    slides.forEach((slide, idx) => {
+        const el = document.createElement('div');
+        el.className = 'carousel-slide' + (idx === 0 ? ' active' : '');
+        if (slide.type === 'image') {
+            const img = document.createElement('img');
+            img.src = slide.src;
+            img.alt = slide.alt || '';
+            el.appendChild(img);
+        } else if (slide.type === 'video') {
+            const video = document.createElement('video');
+            video.src = slide.src;
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;
+            video.playsInline = true;
+            el.appendChild(video);
+        }
+        container.appendChild(el);
+    });
+
+    // Loop through slides at interval
+    setInterval(() => {
+        const allSlides = container.querySelectorAll('.carousel-slide');
+        allSlides[current].classList.remove('active');
+        current = (current + 1) % allSlides.length;
+        allSlides[current].classList.add('active');
+    }, 6000);
+});
+</script>
 
     <!-- Product Catalog Section -->
     <section id="services" class="py-16 bg-gray-50">
@@ -333,7 +483,7 @@
                             <h3 class="text-xl font-semibold">Fresh Provisions</h3>
                         </div>
                         <p class="text-gray-600 mb-4">High-quality vegetables, fruits, meats and dairy delivered fresh to your vessel.</p>
-                        <a href="pages/provision.html" class="text-accent font-medium hover:underline">Learn more</a>
+                        <a href="provision.html" class="text-accent font-medium hover:underline">Learn more</a>
                     </div>
                 </div>
                 
@@ -347,7 +497,7 @@
                             <h3 class="text-xl font-semibold">Technical Equipment</h3>
                         </div>
                         <p class="text-gray-600 mb-4">Marine hardware, spare parts and deck supplies for all vessel types.</p>
-                        <a href="pages/technical.html" class="text-accent font-medium hover:underline">Learn more</a>
+                        <a href="technical.html" class="text-accent font-medium hover:underline">Learn more</a>
                     </div>
                 </div>
                 
@@ -375,7 +525,7 @@
                             <h3 class="text-xl font-semibold">Laundry & Cleaning</h3>
                         </div>
                         <p class="text-gray-600 mb-4">Professional laundry facilities and comprehensive cleaning supplies.</p>
-                        <a href="pages/laundry.html" class="text-accent font-medium hover:underline">Learn more</a>
+                        <a href="laundry.html" class="text-accent font-medium hover:underline">Learn more</a>
                     </div>
                 </div>
             </div>
@@ -1296,7 +1446,7 @@
                 <div class="text-lg font-semibold text-gray-700 text-center mb-2">Schedule Fueling</div>
             </div>
             <div class="flex flex-col md:flex-row gap-8 w-full">
-                <div class="md:w-1/3 w-full mb-6 md:mb-0">
+                <div class="md:w-1/3 w-full mb-6 md:mb-0"></div>
                     <div class="mb-4">
                         <p class="font-semibold">Service:</p>
                         <p>Bunkering / Fuel Delivery</p>
@@ -1402,7 +1552,30 @@
                             <label class="block font-semibold mb-1">Your Email</label>
                             <input type="email" id="disposal-email" name="email" class="border rounded-md px-3 py-2 w-full" required>
                         </div>
-                        <button type="submit" class="bg-primary text-white py-3 px-4 rounded-md font-bold hover:bg-accent hover:text-primary transition w-full
+                        <button type="submit" class="bg-primary text-white py-3 px-4 rounded-md font-bold hover:bg-accent hover:text-primary transition w-full">Confirm Schedule</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Book Transportation Modal -->
+    <div id="book-transport-modal" class="modal-overlay hidden">
+        <div class="modal-content flex flex-col">
+            <button type="button" class="modal-close" onclick="closeScheduleModal('book-transport-modal')">&times;</button>
+            <div class="flex flex-col items-center mb-4">
+                <h2 class="text-2xl font-bold text-primary text-center">Mombasa Marine Supply</h2>
+                <div class="text-lg font-semibold text-gray-700 text-center mb-2">Book Transportation</div>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8 w-full">
+                <div class="md:w-1/3 w-full mb-6 md:mb-0">
+                    <div class="mb-4">
+                        <p class="font-semibold">Service:</p>
+                        <p>Crew Transportation</p                    </div>
+                    <div class="mb-4">
+                        <p class="font-semibold">Duration:</p>
+                        <p>30 minutes</p>
+                    </div>
                     <div class="mb-4">
                         <p class="font-semibold">Note:</p>
                         <p>Select your preferred date and time for crew transport. Our team will confirm your booking by email.</p>
