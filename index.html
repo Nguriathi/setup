@@ -225,48 +225,10 @@
             transition: width 0.2s cubic-bezier(.4,2,.6,1);
         }
         header.sticky, header[style*="position:sticky"] {
-            position: sticky !important;
+            position: fixed !important;
             top: 0;
             z-index: 1050;
         }
-
-        /* Navbar background color */
-        .navbar-bg {
-  background-color: #2C3E50 !important;
-}
-
-/* Make sure body content is not hidden behind navbar */
-body {
-  padding-top: 96px;
-}
-
-/* Carousel styles */
-.carousel-slides {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-}
-.carousel-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 1s cubic-bezier(0.4,0,0.2,1);
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-.carousel-slide.active {
-  opacity: 1;
-  z-index: 1;
-}
-.carousel-slide img,
-.carousel-slide video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
     </style>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
@@ -277,21 +239,21 @@ body {
     <div id="scroll-progress-bg"><div id="scroll-progress-bar"></div></div>
 
     <!-- Navigation -->
-    <!-- Sticky Navbar (structure and theming preserved) -->
-<header class="fixed top-0 left-0 w-full z-50 navbar-bg shadow">
+    <!-- Sticky Navigation Bar -->
+<header class="bg-primary text-white fixed top-0 left-0 w-full z-50 navbar-bg shadow">
     <div class="container mx-auto px-4 py-4">
         <div class="flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <i class="fas fa-anchor text-accent text-2xl"></i>
-                <a href="index.html" class="text-xl font-bold text-white">Mombasa Marine Supply</a>
+                <a href="index.html" class="text-xl font-bold">Mombasa Marine Supply</a>
             </div>
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="index.html" class="hover:text-accent transition text-white">Home</a>
-                <a href="#services" class="hover:text-accent transition text-white">Services</a>
-                <a href="#equipment" class="hover:text-accent transition text-white">Equipment</a>
-                <a href="#port-services" class="hover:text-accent transition text-white">Port Services</a>
-                <a href="#about" class="hover:text-accent transition text-white">About</a>
-                <a href="#contact" class="hover:text-accent transition text-white">Contact</a>
+                <a href="index.html" class="hover:text-accent transition">Home</a>
+                <a href="#services" class="hover:text-accent transition">Services</a>
+                <a href="#equipment" class="hover:text-accent transition">Equipment</a>
+                <a href="#port-services" class="hover:text-accent transition">Port Services</a>
+                <a href="#about" class="hover:text-accent transition">About</a>
+                <a href="#contact" class="hover:text-accent transition">Contact</a>
             </nav>
             <div class="hidden lg:flex items-center space-x-4">
                 <div class="flex items-center space-x-2">
@@ -307,12 +269,12 @@ body {
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
             <div class="flex flex-col space-y-4">
-                <a href="index.html" class="hover:text-accent transition text-white">Home</a>
-                <a href="#services" class="hover:text-accent transition text-white">Services</a>
-                <a href="#equipment" class="hover:text-accent transition text-white">Equipment</a>
-                <a href="#port-services" class="hover:text-accent transition text-white">Port Services</a>
-                <a href="#about" class="hover:text-accent transition text-white">About</a>
-                <a href="#contact" class="hover:text-accent transition text-white">Contact</a>
+                <a href="index.html" class="hover:text-accent transition">Home</a>
+                <a href="#services" class="hover:text-accent transition">Services</a>
+                <a href="#equipment" class="hover:text-accent transition">Equipment</a>
+                <a href="#port-services" class="hover:text-accent transition">Port Services</a>
+                <a href="#about" class="hover:text-accent transition">About</a>
+                <a href="#contact" class="hover:text-accent transition">Contact</a>
                 <div class="pt-2 border-t border-gray-700">
                     <div class="flex items-center space-x-2">
                         <i class="fas fa-phone"></i>
@@ -325,27 +287,25 @@ body {
     </div>
 </header>
 
-<!-- Hero Section with random looping carousel (2 images + 1 video) and readable text -->
-<section id="home" class="relative w-full h-screen min-h-screen flex items-center justify-center overflow-hidden pt-24">
-    <!-- Carousel Background -->
-    <div class="carousel-wrapper absolute inset-0 z-0">
-        <div class="carousel-slides relative w-full h-full"></div>
-    </div>
-    <!-- Hero Content with subtle blurry background -->
-    <div class="relative z-10 w-full flex justify-center items-center">
-        <div class="max-w-2xl w-full mx-4 bg-black/40 backdrop-blur-md p-6 md:p-8 rounded-lg text-center md:text-left">
+    <!-- Hero Section -->
+    <!-- Dynamic, Full-Screen Hero Section -->
+<section id="home" class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+    <!-- Dynamic background media will be injected here -->
+    <div id="hero-bg-media" class="absolute inset-0 w-full h-full z-0"></div>
+    <div class="relative z-10 flex flex-col items-start max-w-2xl mx-auto px-4">
+        <div class="bg-black/30 backdrop-blur-sm p-8 rounded-lg shadow-lg">
             <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4 text-white">Professional Ship Chandlery Services</h1>
             <p class="text-xl mb-8 text-white">Complete marine supplies and provisions for vessels at Port of Mombasa</p>
-            <div class="stats-container p-4 md:p-6 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="text-center md:text-left">
+            <div class="stats-container p-6 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-3 gap-4 bg-primary/80">
+                <div class="text-center">
                     <p class="text-accent font-bold text-2xl">15+</p>
                     <p class="text-white">Years Experience</p>
                 </div>
-                <div class="text-center md:text-left">
+                <div class="text-center">
                     <p class="text-accent font-bold text-2xl">500+</p>
                     <p class="text-white">Vessels Served</p>
                 </div>
-                <div class="text-center md:text-left">
+                <div class="text-center">
                     <p class="text-accent font-bold text-2xl">24/7</p>
                     <p class="text-white">Service</p>
                 </div>
@@ -354,118 +314,6 @@ body {
         </div>
     </div>
 </section>
-
-<style>
-/* Navbar background color */
-.navbar-bg {
-  background-color: #2C3E50 !important;
-}
-
-/* Make sure body content is not hidden behind navbar */
-body {
-  padding-top: 96px;
-}
-
-/* Carousel styles */
-.carousel-slides {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-}
-.carousel-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 1s cubic-bezier(0.4,0,0.2,1);
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-.carousel-slide.active {
-  opacity: 1;
-  z-index: 1;
-}
-.carousel-slide img,
-.carousel-slide video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-</style>
-
-<script>
-// Mobile menu toggle
-document.getElementById('mobile-menu-button').onclick = function() {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('hidden');
-};
-
-// Hero carousel with 2 images and 1 video, random looping
-document.addEventListener('DOMContentLoaded', function () {
-    const slidesData = [
-        {
-            type: 'image',
-            src: 'media/images/ship 1.jpg',
-            alt: 'Ship at Port'
-        },
-        {
-            type: 'image',
-            src: 'media/images/ship 2.jpg',
-            alt: 'Container Terminal'
-        },
-        {
-            type: 'video',
-            src: 'media/videos/hero-video.mp4'
-        }
-    ];
-
-    // Shuffle slides for random order
-    function shuffle(array) {
-        let currentIndex = array.length, randomIndex;
-        while (currentIndex !== 0) {
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex--;
-            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-        }
-        return array;
-    }
-
-    let slides = shuffle([...slidesData]);
-    let current = 0;
-    const container = document.querySelector('.carousel-slides');
-
-    // Create slide elements
-    slides.forEach((slide, idx) => {
-        const el = document.createElement('div');
-        el.className = 'carousel-slide' + (idx === 0 ? ' active' : '');
-        if (slide.type === 'image') {
-            const img = document.createElement('img');
-            img.src = slide.src;
-            img.alt = slide.alt || '';
-            el.appendChild(img);
-        } else if (slide.type === 'video') {
-            const video = document.createElement('video');
-            video.src = slide.src;
-            video.autoplay = true;
-            video.loop = true;
-            video.muted = true;
-            video.playsInline = true;
-            el.appendChild(video);
-        }
-        container.appendChild(el);
-    });
-
-    // Loop through slides at interval
-    setInterval(() => {
-        const allSlides = container.querySelectorAll('.carousel-slide');
-        allSlides[current].classList.remove('active');
-        current = (current + 1) % allSlides.length;
-        allSlides[current].classList.add('active');
-    }, 6000);
-});
-</script>
 
     <!-- Product Catalog Section -->
     <section id="services" class="py-16 bg-gray-50">
@@ -483,7 +331,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <h3 class="text-xl font-semibold">Fresh Provisions</h3>
                         </div>
                         <p class="text-gray-600 mb-4">High-quality vegetables, fruits, meats and dairy delivered fresh to your vessel.</p>
-                        <a href="provision.html" class="text-accent font-medium hover:underline">Learn more</a>
+                        <a href="pages/provision.html" class="text-accent font-medium hover:underline">Learn more</a>
                     </div>
                 </div>
                 
@@ -497,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <h3 class="text-xl font-semibold">Technical Equipment</h3>
                         </div>
                         <p class="text-gray-600 mb-4">Marine hardware, spare parts and deck supplies for all vessel types.</p>
-                        <a href="technical.html" class="text-accent font-medium hover:underline">Learn more</a>
+                        <a href="pages/technical.html" class="text-accent font-medium hover:underline">Learn more</a>
                     </div>
                 </div>
                 
@@ -511,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <h3 class="text-xl font-semibold">Gas & Fuel Services</h3>
                         </div>
                         <p class="text-gray-600 mb-4">LPG cylinders, refueling equipment and marine fuel delivery services.</p>
-                        <a href="gas-fuel.html" class="text-accent font-medium hover:underline">Learn more</a>
+                        <a href="pages/gas-fuel.html" class="text-accent font-medium hover:underline">Learn more</a>
                     </div>
                 </div>
                 
@@ -525,7 +373,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <h3 class="text-xl font-semibold">Laundry & Cleaning</h3>
                         </div>
                         <p class="text-gray-600 mb-4">Professional laundry facilities and comprehensive cleaning supplies.</p>
-                        <a href="laundry.html" class="text-accent font-medium hover:underline">Learn more</a>
+                        <a href="pages/laundry.html" class="text-accent font-medium hover:underline">Learn more</a>
                     </div>
                 </div>
             </div>
@@ -616,7 +464,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <h2 class="text-3xl font-bold mb-6 text-primary">Recent Supply Operations</h2>
                     <p class="text-gray-600 mb-6">Our dedicated team has successfully completed supply operations for vessels of all sizes at Port of Mombasa. We pride ourselves on timely deliveries that meet the highest quality standards.</p>
                     <p class="text-gray-600 mb-8">From large container ships to private yachts, we adapt our services to meet your specific requirements, ensuring your operations continue without interruption.</p>
-                    <a href="portfolio.html" class="bg-accent text-primary px-6 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">View Our Portfolio</a>
+                    <a href="pages/portfolio.html" class="bg-accent text-primary px-6 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">View Our Portfolio</a>
                 </div>
                 <div class="lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="relative">
@@ -811,11 +659,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Services</h3>
                     <ul class="space-y-2">
-                        <li><a href="provision.html" class="hover:text-accent transition">Fresh Provisions</a></li>
-                        <li><a href="technical.html" class="hover:text-accent transition">Technical Equipment</a></li>
-                        <li><a href="gas-fuel.html" class="hover:text-accent transition">Gas & Fuel Services</a></li>
-                        <li><a href="laundry.html" class="hover:text-accent transition">Laundry & Cleaning</a></li>
-                        <li><a href="bunkering.html" class="hover:text-accent transition">Bunkering Services</a></li>
+                        <li><a href="pages/provision.html" class="hover:text-accent transition">Fresh Provisions</a></li>
+                        <li><a href="pages/technical.html" class="hover:text-accent transition">Technical Equipment</a></li>
+                        <li><a href="pages/gas-fuel.html" class="hover:text-accent transition">Gas & Fuel Services</a></li>
+                        <li><a href="pages/laundry.html" class="hover:text-accent transition">Laundry & Cleaning</a></li>
+                        <li><a href="pages/bunkering.html" class="hover:text-accent transition">Bunkering Services</a></li>
                     </ul>
                 </div>
                 
@@ -1437,230 +1285,45 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('DOMContentLoaded', loadPricelist);
     </script>
 
-    <!-- Schedule Fueling Modal -->
-    <div id="schedule-fueling-modal" class="modal-overlay hidden">
-        <div class="modal-content flex flex-col">
-            <button type="button" class="modal-close" onclick="closeScheduleModal('schedule-fueling-modal')">&times;</button>
-            <div class="flex flex-col items-center mb-4">
-                <h2 class="text-2xl font-bold text-primary text-center">Mombasa Marine Supply</h2>
-                <div class="text-lg font-semibold text-gray-700 text-center mb-2">Schedule Fueling</div>
-            </div>
-            <div class="flex flex-col md:flex-row gap-8 w-full">
-                <div class="md:w-1/3 w-full mb-6 md:mb-0"></div>
-                    <div class="mb-4">
-                        <p class="font-semibold">Service:</p>
-                        <p>Bunkering / Fuel Delivery</p>
-                    </div>
-                    <div class="mb-4">
-                        <p class="font-semibold">Duration:</p>
-                        <p>30 minutes</p>
-                    </div>
-                    <div class="mb-4">
-                        <p class="font-semibold">Note:</p>
-                        <p>Please select your preferred date and time for fueling. Our team will confirm your booking by email.</p>
-                    </div>
-                </div>
-                <div class="md:w-2/3 w-full flex flex-col">
-                    <form id="fueling-schedule-form" method="POST" action="https://formspree.io/f/your-form-id" class="flex flex-col h-full">
-                        <div class="mb-4">
-                            <label class="block font-semibold mb-1">Select Date</label>
-                            <input type="date" id="fueling-date" name="date" class="border rounded-md px-3 py-2 w-full" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block font-semibold mb-1">Select Time</label>
-                            <select id="fueling-time" name="time" class="border rounded-md px-3 py-2 w-full" required>
-                                <option value="">Choose a time</option>
-                                <option>09:00 AM</option>
-                                <option>09:30 AM</option>
-                                <option>10:00 AM</option>
-                                <option>10:30 AM</option>
-                                <option>11:00 AM</option>
-                                <option>11:30 AM</option>
-                                <option>12:00 PM</option>
-                                <option>12:30 PM</option>
-                                <option>01:00 PM</option>
-                                <option>01:30 PM</option>
-                                <option>02:00 PM</option>
-                                <option>02:30 PM</option>
-                                <option>03:00 PM</option>
-                                <option>03:30 PM</option>
-                                <option>04:00 PM</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block font-semibold mb-1">Your Email</label>
-                            <input type="email" id="fueling-email" name="email" class="border rounded-md px-3 py-2 w-full" required>
-                        </div>
-                        <button type="submit" class="bg-primary text-white py-3 px-4 rounded-md font-bold hover:bg-accent hover:text-primary transition w-full">Confirm Schedule</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Self-contained JS for random hero background media -->
+<script>
+(function() {
+    // Paths to your media assets
+    const mediaOptions = [
+        { type: 'image', src: 'media/images/vegetables4.jpg' },
+        { type: 'image', src: 'media/images/ship 1.jpg' },
+        { type: 'image', src: 'media/images/ship 2.jpg' },
+        { type: 'video', src: 'media/videos/hero-video.mp4' }
+    ];
 
-    <!-- Arrange Disposal Modal -->
-    <div id="arrange-disposal-modal" class="modal-overlay hidden">
-        <div class="modal-content flex flex-col">
-            <button type="button" class="modal-close" onclick="closeScheduleModal('arrange-disposal-modal')">&times;</button>
-            <div class="flex flex-col items-center mb-4">
-                <h2 class="text-2xl font-bold text-primary text-center">Mombasa Marine Supply</h2>
-                <div class="text-lg font-semibold text-gray-700 text-center mb-2">Arrange Disposal</div>
-            </div>
-            <div class="flex flex-col md:flex-row gap-8 w-full">
-                <div class="md:w-1/3 w-full mb-6 md:mb-0">
-                    <div class="mb-4">
-                        <p class="font-semibold">Service:</p>
-                        <p>Waste Disposal</p>
-                    </div>
-                    <div class="mb-4">
-                        <p class="font-semibold">Duration:</p>
-                        <p>30 minutes</p>
-                    </div>
-                    <div class="mb-4">
-                        <p class="font-semibold">Note:</p>
-                        <p>Select your preferred date and time for waste disposal. Our team will confirm your booking by email.</p>
-                    </div>
-                </div>
-                <div class="md:w-2/3 w-full flex flex-col">
-                    <form id="disposal-schedule-form" method="POST" action="https://formspree.io/f/your-form-id" class="flex flex-col h-full">
-                        <div class="mb-4">
-                            <label class="block font-semibold mb-1">Select Date</label>
-                            <input type="date" id="disposal-date" name="date" class="border rounded-md px-3 py-2 w-full" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block font-semibold mb-1">Select Time</label>
-                            <select id="disposal-time" name="time" class="border rounded-md px-3 py-2 w-full" required>
-                                <option value="">Choose a time</option>
-                                <option>09:00 AM</option>
-                                <option>09:30 AM</option>
-                                <option>10:00 AM</option>
-                                <option>10:30 AM</option>
-                                <option>11:00 AM</option>
-                                <option>11:30 AM</option>
-                                <option>12:00 PM</option>
-                                <option>12:30 PM</option>
-                                <option>01:00 PM</option>
-                                <option>01:30 PM</option>
-                                <option value="02:00 PM">02:00 PM</option>
-                                <option value="02:30 PM">02:30 PM</option>
-                                <option value="03:00 PM">03:00 PM</option>
-                                <option value="03:30 PM">03:30 PM</option>
-                                <option value="04:00 PM">04:00 PM</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block font-semibold mb-1">Your Email</label>
-                            <input type="email" id="disposal-email" name="email" class="border rounded-md px-3 py-2 w-full" required>
-                        </div>
-                        <button type="submit" class="bg-primary text-white py-3 px-4 rounded-md font-bold hover:bg-accent hover:text-primary transition w-full">Confirm Schedule</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    function setHeroBackground() {
+        const heroBg = document.getElementById('hero-bg-media');
+        if (!heroBg) return;
+        // Pick one at random
+        const choice = mediaOptions[Math.floor(Math.random() * mediaOptions.length)];
+        heroBg.innerHTML = ''; // Clear previous content
 
-    <!-- Book Transportation Modal -->
-    <div id="book-transport-modal" class="modal-overlay hidden">
-        <div class="modal-content flex flex-col">
-            <button type="button" class="modal-close" onclick="closeScheduleModal('book-transport-modal')">&times;</button>
-            <div class="flex flex-col items-center mb-4">
-                <h2 class="text-2xl font-bold text-primary text-center">Mombasa Marine Supply</h2>
-                <div class="text-lg font-semibold text-gray-700 text-center mb-2">Book Transportation</div>
-            </div>
-            <div class="flex flex-col md:flex-row gap-8 w-full">
-                <div class="md:w-1/3 w-full mb-6 md:mb-0">
-                    <div class="mb-4">
-                        <p class="font-semibold">Service:</p>
-                        <p>Crew Transportation</p                    </div>
-                    <div class="mb-4">
-                        <p class="font-semibold">Duration:</p>
-                        <p>30 minutes</p>
-                    </div>
-                    <div class="mb-4">
-                        <p class="font-semibold">Note:</p>
-                        <p>Select your preferred date and time for crew transport. Our team will confirm your booking by email.</p>
-                    </div>
-                </div>
-                <div class="md:w-2/3 w-full flex flex-col">
-                    <form id="transport-schedule-form" method="POST" action="https://formspree.io/f/your-form-id" class="flex flex-col h-full">
-                        <div class="mb-4">
-                            <label class="block font-semibold mb-1">Select Date</label>
-                            <input type="date" id="transport-date" name="date" class="border rounded-md px-3 py-2 w-full" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block font-semibold mb-1">Select Time</label>
-                            <select id="transport-time" name="time" class="border rounded-md px-3 py-2 w-full" required>
-                                <option value="">Choose a time</option>
-                                <option>09:00 AM</option>
-                                <option>09:30 AM</option>
-                                <option>10:00 AM</option>
-                                <option>10:30 AM</option>
-                                <option>11:00 AM</option>
-                                <option>11:30 AM</option>
-                                <option>12:00 PM</option>
-                                <option>12:30 PM</option>
-                                <option>01:00 PM</option>
-                                <option>01:30 PM</option>
-                                <option>02:00 PM</option>
-                                <option>02:30 PM</option>
-                                <option>03:00 PM</option>
-                                <option>03:30 PM</option>
-                                <option>04:00 PM</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block font-semibold mb-1">Your Email</label>
-                            <input type="email" id="transport-email" name="email" class="border rounded-md px-3 py-2 w-full" required>
-                        </div>
-                        <button type="submit" class="bg-primary text-white py-3 px-4 rounded-md font-bold hover:bg-accent hover:text-primary transition w-full">Confirm Schedule</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Open/close modal helpers
-        function openScheduleModal(id) {
-            document.getElementById(id).classList.remove('hidden');
+        if (choice.type === 'image') {
+            heroBg.style.backgroundImage = `url('${choice.src}')`;
+            heroBg.style.backgroundSize = 'cover';
+            heroBg.style.backgroundPosition = 'center';
+            heroBg.style.backgroundRepeat = 'no-repeat';
+        } else if (choice.type === 'video') {
+            heroBg.style.backgroundImage = '';
+            const vid = document.createElement('video');
+            vid.src = choice.src;
+            vid.autoplay = true;
+            vid.loop = true;
+            vid.muted = true;
+            vid.playsInline = true;
+            vid.className = 'w-full h-full object-cover absolute inset-0';
+            heroBg.appendChild(vid);
         }
-        function closeScheduleModal(id) {
-            document.getElementById(id).classList.add('hidden');
-        }
+    }
 
-        // Attach open handlers to your service links/buttons
-        document.addEventListener('DOMContentLoaded', function() {
-            // Fueling
-            document.querySelectorAll('[data-schedule-fueling]').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    openScheduleModal('schedule-fueling-modal');
-                });
-            });
-            // Disposal
-            document.querySelectorAll('[data-arrange-disposal]').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    openScheduleModal('arrange-disposal-modal');
-                });
-            });
-            // Transport
-            document.querySelectorAll('[data-book-transport]').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    openScheduleModal('book-transport-modal');
-                });
-            });
-            // Close on outside click
-            ['schedule-fueling-modal','arrange-disposal-modal','book-transport-modal'].forEach(id => {
-                const modal = document.getElementById(id);
-                if (modal) {
-                    modal.addEventListener('click', function(e) {
-                    if (e.target === modal) closeScheduleModal(id);
-                });
-            }
-        });
-    });
-    </script>
+    // Run on DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', setHeroBackground);
+})();
+</script>
 </body>
 </html>
