@@ -1,0 +1,75 @@
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
+
+<header class="bg-primary text-white fixed top-0 left-0 w-full z-50 navbar-bg shadow">
+    <div class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-anchor text-accent text-2xl"></i>
+                <span class="text-xl font-bold">Mombasa Marine Supply</span>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="/index.html" class="hover:text-accent transition">Home</a>
+                <a href="/index.html#services" class="hover:text-accent transition">Services</a>
+                <a href="/index.html#equipment" class="hover:text-accent transition">Equipment</a>
+                <a href="/index.html#port-services" class="hover:text-accent transition">Port Services</a>
+                <a href="/index.html#about" class="hover:text-accent transition">About</a>
+                <a href="/index.html#contact" class="hover:text-accent transition">Contact</a>
+            </nav>
+            <div class="hidden lg:flex items-center space-x-4">
+                <!-- ...existing code... -->
+                <!--div-- class="flex items-center space-x-2">
+                    <i class="fas fa-phone"></i>
+                    <span>+254 700 123 456</span>
+                </!--div-->
+
+                <a href="javascript:void(0)" id="open-pricelist-modal" class="bg-accent text-primary px-4 py-2 rounded-md font-medium hover:bg-yellow-600 transition">Request Quote</a>
+            </div>
+            
+        </div>
+        
+        <!-- Pricelist Modal -->
+        <div id="pricelist-modal" class="modal-overlay hidden">
+            <div class="modal-content flex flex-col">
+                <button id="close-pricelist-modal" class="modal-close">&times;</button>
+                <div class="flex flex-col items-center mb-4">
+                    <h2 class="text-2xl font-bold text-primary text-center">Mombasa Marine Supply</h2>
+                    <div class="text-lg font-semibold text-gray-700 text-center mb-2">Request Invoice</div>
+                </div>
+                <form id="pricelist-form" class="flex flex-col flex-1" method="POST" action="https://formspree.io/f/your-form-id" enctype="multipart/form-data">
+                    <input type="text" id="pricelist-search" placeholder="Search products..." class="mb-4 px-3 py-2 border rounded-md w-full focus:outline-none focus:ring-2 focus:ring-accent" />
+                    <div id="items-container" class="overflow-x-auto overflow-y-auto mb-2" style="max-height: 350px;">
+                        <table class="min-w-full text-sm border">
+                            <thead class="sticky top-0 bg-white z-10">
+                                <tr class="bg-primary text-white">
+                                    <th class="p-2"></th>
+                                    <th class="p-2">Product</th>
+                                    <th class="p-2">Unit</th>
+                                    <th class="p-2">Quantity</th>
+                                    <th class="p-2">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="product-table-body"></tbody>
+                        </table>
+                        <!-- Custom Items Section -->
+                        <div class="text-xs text-gray-500 mt-2 mb-2">Can't find your item? Add it below as a custom request.</div>
+                        <table class="min-w-full text-sm border" id="custom-items-table">
+                            <tbody id="custom-items-body">
+                                <!-- Custom item rows will be injected here -->
+                            </tbody>
+                        </table>
+                        <button type="button" id="add-custom-item" class="mt-2 mb-2 px-3 py-1 bg-accent text-primary rounded hover:bg-yellow-600 font-medium">+ Add Custom Item</button>
+                        <!-- Email and Send Request  -->
+                        <div class="flex flex-col gap-2 mt-4 mb-2 px-2">
+                            <input type="email" id="user-email" name="email" placeholder="Your Email (required)" required class="px-3 py-2 border rounded-md w-full focus:outline-none focus:ring-2 focus:ring-accent" />
+                            <button id="send-request-btn" type="submit" class="w-full bg-primary text-white py-3 px-4 rounded-md font-bold hover:bg-accent hover:text-primary transition" disabled>Send Request</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+
+
