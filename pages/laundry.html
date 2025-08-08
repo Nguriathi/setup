@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laundry Services | Mombasa Marine Supply</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C3E50',
+                        accent: '#F39C12',
+                        darkblue: '#1A2634',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .service-hero {
+            background-image: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('/media/images/laundry header.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        /* Modal: Responsive padding and scroll */
+        .modal-content {
+            width: 100%;
+            max-width: 48rem;
+            background: #fff;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 32px rgba(44,62,80,0.18);
+            padding: 0.5rem;
+            position: relative;
+        }
+        @media (max-width: 1023px) {
+            .modal-content {
+                max-height: 95vh;
+                overflow-y: auto;
+            }
+        }
+        @media (min-width: 640px) {
+            .modal-content { padding: 1.5rem; }
+        }
+        @media (min-width: 768px) {
+            .modal-content { padding: 2rem; }
+        }
+        @media (min-width: 1280px) {
+            .modal-content { padding: 2.5rem; }
+        }
+        /* Modal overlay always covers full screen */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (max-width: 1023px) {
+            .modal-overlay {
+                overflow: auto;
+            }
+        }
+        /* Modal close button always visible and clickable */
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: #6b7280;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .modal-close:hover { color: #F39C12; }
+        /* Prevent modal content from touching screen edges */
+        @media (max-width: 639px) {
+            .modal-content { margin: 1rem; }
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <div id="header"></div>
+
+    <!-- Laundry & Cleaning Hero -->
+    <section class="service-hero text-white min-h-screen flex items-center py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Professional Laundry & Cleaning Services</h1>
+                <p class="text-xl mb-8">Fresh linens and spotless environments for all vessel needs in Mombasa Port</p>
+                
+                <div class="bg-darkblue p-6 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">24-48hr</p>
+                        <p>Turnaround Time</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">100%</p>
+                        <p>Sanitization Guarantee</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">1000kg+</p>
+                        <p>Daily Capacity</p>
+                    </div>
+                </div>
+                
+                <a href="../index.html#contact" class="bg-accent text-primary px-8 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">Request Service</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Laundry Services Details -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+                    <img src="/media/images/laundry.jpg" 
+                         alt="Marine Laundry Services" class="w-full rounded-lg shadow-lg">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 text-primary">Our Laundry Services</h2>
+                    <p class="text-gray-600 mb-6">We provide professional laundry services specifically tailored for marine needs. Our industrial laundry facility handles everything from delicate officer uniforms to heavy-duty crew workwear and vessel linens.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Uniform Cleaning</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Professional cleaning, pressing and folding of all crew uniforms</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Bulk Workwear</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">High-capacity cleaning of overalls, coveralls and protective gear</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Linen Service</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Sheets, towels, drapes and other linens with express service options</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Specialty Fabrics</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Delicate handling of fine fabrics and marine-grade textiles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cleaning Supplies Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Marine Cleaning Supplies</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="service-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <i class="fas fa-broom text-accent text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Deck Cleaning</h3>
+                    <p class="text-gray-600">Marine-specific deck cleaners, scrubbers and pressure washing equipment supplies and rentals.</p>
+                </div>
+                
+                <div class="service-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <i class="fas fa-soap text-accent text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Cabin Care</h3>
+                    <p class="text-gray-600">Specialized cleaning products for cabins, galleys and marine head systems.</p>
+                </div>
+                
+                <div class="service-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <i class="fas fa-spray-can text-accent text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Industrial Cleaners</h3>
+                    <p class="text-gray-600">Heavy-duty degreasers, rust removers and eco-friendly marine detergents.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Process -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Our Service Process</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <!-- Timeline -->
+                    <div class="border-l-2 border-accent absolute h-full top-0 left-4"></div>
+                    
+                    <!-- Timeline items -->
+                    <div class="relative mb-8 pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <i class="fas fa-phone text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Schedule Pickup</h3>
+                        <p class="text-gray-600">Request pickup through our 24/7 service line or online form.</p>
+                    </div>
+                    
+                    <div class="relative mb-8 pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <i class="fas fa-truck text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Priority Collection</h3>
+                        <p class="text-gray-600">Dedicated port vehicle collects laundry within 2 hours for urgent requests.</p>
+                    </div>
+                    
+                    <div class="relative mb-8 pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <i class="fas fa-tshirt text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Professional Processing</h3>
+                        <p class="text-gray-600">Industrial washing, specialized drying, and pressing at our facility.</p>
+                    </div>
+                    
+                    <div class="relative pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <i class="fas fa-box text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Return Delivery</h3>
+                        <p class="text-gray-600">Freshly cleaned items returned neatly packaged or on hangers as requested.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <a href="#contact" class="bg-accent text-primary px-8 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">Schedule Laundry Service</a>
+                    <p class="mt-4 text-gray-600">For bulk pricing or contracts: <a href="mailto:laundry@example.com" class="text-accent underline">laundry@example.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mombasa Marine Supply | Professional Ship Chandlery Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C3E50',
+                        accent: '#F39C12',
+                        darkblue: '#1A2634',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('https://images.unsplash.com/photo-1581092921461-39b8d5048a82?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .category-card {
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .maritime-icon {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .stats-container {
+            background: rgba(26, 38, 52, 0.85);
+        }
+        
+        .port-service-image {
+            transition: all 0.3s ease;
+        }
+        
+        .port-service-image:hover {
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body class="font-sans">
+   
+
+    <!-- Footer -->
+    <div id="footer"></div>
+    <script src="../shared.js"></script>
+</body>
+</html>

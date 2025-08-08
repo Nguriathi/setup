@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Provisions | Mombasa Marine Supply</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C3E50',
+                        accent: '#F39C12',
+                        darkblue: '#1A2634',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .service-hero {
+            background-image: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('/media/images/provision header.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        /* Modal: Responsive padding and scroll */
+        .modal-content {
+            width: 100%;
+            max-width: 48rem;
+            background: #fff;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 32px rgba(44,62,80,0.18);
+            padding: 0.5rem;
+            position: relative;
+        }
+        @media (max-width: 1023px) {
+            .modal-content {
+                max-height: 95vh;
+                overflow-y: auto;
+            }
+        }
+        @media (min-width: 640px) {
+            .modal-content { padding: 1.5rem; }
+        }
+        @media (min-width: 768px) {
+            .modal-content { padding: 2rem; }
+        }
+        @media (min-width: 1280px) {
+            .modal-content { padding: 2.5rem; }
+        }
+        /* Modal overlay always covers full screen */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (max-width: 1023px) {
+            .modal-overlay {
+                overflow: auto;
+            }
+        }
+        /* Modal close button always visible and clickable */
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: #6b7280;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .modal-close:hover { color: #F39C12; }
+        /* Prevent modal content from touching screen edges */
+        @media (max-width: 639px) {
+            .modal-content { margin: 1rem; }
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <div id="header"></div>
+
+    <!-- Fresh Provisions Hero -->
+    <section class="service-hero text-white min-h-screen flex items-center py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Fresh Provisions Service</h1>
+                <p class="text-xl mb-8">Premium quality fresh produce delivered directly to your vessel in Port of Mombasa</p>
+                
+                <div class="bg-darkblue p-6 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">Daily</p>
+                        <p>Market Sourcing</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">100%</p>
+                        <p>Quality Inspected</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">4hr</p>
+                        <p>Delivery Window</p>
+                    </div>
+                </div>
+                
+                <a href="#contact" class="bg-accent text-primary px-8 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">Request Fresh Provisions</a>
+            </div>
+        </div>
+    </section>
+
+                
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+                    <img src="/media/images/provision 3.jpg" 
+                         alt="Fresh Produce Selection" class="w-full rounded-lg shadow-lg">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 text-primary">Our Fresh Provisions</h2>
+                    <p class="text-gray-600 mb-6">We provide the highest quality fresh provisions sourced daily from trusted local suppliers and international imports. Our team personally inspects all produce to ensure only the freshest items reach your vessel.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Fruits & Vegetables</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Seasonal selections, tropical fruits, leafy greens, root vegetables</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Meat & Poultry</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Halal certified beef, chicken, lamb from approved suppliers</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Dairy & Eggs</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Fresh milk, cheese, butter, yogurt and free-range eggs</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Bakery & Dry Goods</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Freshly baked bread, pastries, rice, pasta and cereals</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fresh Packaging Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Packaging & Handling</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="service-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <i class="fas fa-box-open text-accent text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Sustainable Packaging</h3>
+                    <p class="text-gray-600">We use environmentally friendly packaging that meets maritime disposal requirements while protecting your provisions during transport.</p>
+                </div>
+                
+                <div class="service-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <i class="fas fa-snowflake text-accent text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Temperature Controlled</h3>
+                    <p class="text-gray-600">Perishable items are transported in insulated containers with ice packs or refrigeration units to maintain optimal freshness.</p>
+                </div>
+                
+                <div class="service-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <i class="fas fa-clipboard-check text-accent text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Hygienic Handling</h3>
+                    <p class="text-gray-600">Our team follows strict food safety protocols with gloves, hair nets, and sanitized equipment during preparation and loading.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fresh Ordering Process -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Ordering Process</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <!-- Timeline -->
+                    <div class="border-l-2 border-accent absolute h-full top-0 left-4"></div>
+                    
+                    <!-- Timeline items -->
+                    <div class="relative mb-8 pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <span class="text-primary font-bold">1</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Request Quote</h3>
+                        <p class="text-gray-600">Contact us with your vessel details, estimated crew size and provisioning requirements.</p>
+                    </div>
+                    
+                    <div class="relative mb-8 pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <span class="text-primary font-bold">2</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Customized Menu</h3>
+                        <p class="text-gray-600">Our chef will work with you to create a customized menu based on crew preferences, duration and storage capacity.</p>
+                    </div>
+                    
+                    <div class="relative mb-8 pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <span class="text-primary font-bold">3</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Final Confirmation</h3>
+                        <p class="text-gray-600">We'll provide a final confirmation with delivery schedule 24 hours prior to port arrival.</p>
+                    </div>
+                    
+                    <div class="relative pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <span class="text-primary font-bold">4</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">On-Time Delivery</h3>
+                        <p class="text-gray-600">Fresh provisions delivered directly to your vessel according to agreed schedule.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <a href="#contact" class="bg-accent text-primary px-8 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">Begin Your Order</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      
+
+    <!-- Footer -->
+    <div id="footer"></div>
+    <script src="../shared.js"></script>
+
+    
+</body>
+</html>

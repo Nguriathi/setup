@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas & Fuel Services | Mombasa Marine Supply</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C3E50',
+                        accent: '#F39C12',
+                        darkblue: '#1A2634',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .service-hero {
+            background-image: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('/media/images/gas header.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        /* Modal: Responsive padding and scroll */
+        .modal-content {
+            width: 100%;
+            max-width: 48rem;
+            background: #fff;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 32px rgba(44,62,80,0.18);
+            padding: 0.5rem;
+            position: relative;
+        }
+        @media (max-width: 1023px) {
+            .modal-content {
+                max-height: 95vh;
+                overflow-y: auto;
+            }
+        }
+        @media (min-width: 640px) {
+            .modal-content { padding: 1.5rem; }
+        }
+        @media (min-width: 768px) {
+            .modal-content { padding: 2rem; }
+        }
+        @media (min-width: 1280px) {
+            .modal-content { padding: 2.5rem; }
+        }
+        /* Modal overlay always covers full screen */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (max-width: 1023px) {
+            .modal-overlay {
+                overflow: auto;
+            }
+        }
+        /* Modal close button always visible and clickable */
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: #6b7280;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .modal-close:hover { color: #F39C12; }
+        /* Prevent modal content from touching screen edges */
+        @media (max-width: 639px) {
+            .modal-content { margin: 1rem; }
+        }
+    </style>
+</head>
+<body class="font-sans">
+  <div id="header"></div>
+
+    <!-- Gas & Fuel Hero -->
+    <section class="service-hero text-white min-h-screen flex items-center py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Marine Gas & Fuel Services</h1>
+                <p class="text-xl mb-8">Reliable marine fuel delivery, LPG cylinders, and refueling equipment for vessels at Port of Mombasa.</p>
+                <div class="bg-darkblue p-6 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">24/7</p>
+                        <p>Fuel Delivery</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">Certified</p>
+                        <p>LPG Cylinders</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">100%</p>
+                        <p>Compliance</p>
+                    </div>
+                </div>
+                <a href="../index.html#contact" class="bg-accent text-primary px-8 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">Request Fuel Service</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gas & Fuel Details -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+                    <img src="/media/images/gas header.jpg"
+                         alt="Gas & Fuel Services" class="w-full rounded-lg shadow-lg">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 text-primary">Our Gas & Fuel Services</h2>
+                    <p class="text-gray-600 mb-6">We provide comprehensive marine fuel solutions for all vessel types. Our certified team ensures safe, efficient, and compliant delivery of marine diesel, lubricants, and LPG cylinders directly to your berth.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-gas-pump text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Marine Diesel</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">High-quality marine diesel delivered 24/7 with all documentation handled.</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-fire text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">LPG Cylinders</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Certified LPG cylinders and safe refilling services for galley and heating.</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-tools text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Refueling Equipment</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Supply and installation of hoses, nozzles, and safety equipment.</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-clipboard-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Compliance & Docs</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">All port and maritime compliance, safety, and delivery documentation provided.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fueling Process Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Our Fueling Process</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <!-- Timeline -->
+                    <div class="border-l-2 border-accent absolute h-full top-0 left-4"></div>
+                    <!-- Timeline items -->
+                    <div class="relative mb-8 pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <i class="fas fa-phone text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Request & Schedule</h3>
+                        <p class="text-gray-600">Contact us with your vessel's requirements and preferred delivery time.</p>
+                    </div>
+                    <div class="relative mb-8 pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <i class="fas fa-truck-moving text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Delivery & Refueling</h3>
+                        <p class="text-gray-600">Our certified team delivers fuel or gas directly to your berth, ensuring safe transfer.</p>
+                    </div>
+                    <div class="relative mb-8 pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <i class="fas fa-tools text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Equipment Setup</h3>
+                        <p class="text-gray-600">We provide and install any necessary hoses or safety equipment for fueling.</p>
+                    </div>
+                    <div class="relative pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <i class="fas fa-file-signature text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Documentation</h3>
+                        <p class="text-gray-600">Receive all required documentation and compliance certificates upon completion.</p>
+                    </div>
+                </div>
+                <div class="mt-12 text-center">
+                    <a href="/index.html#contact" class="bg-accent text-primary px-8 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">Schedule Fuel Delivery</a>
+                    <p class="mt-4 text-gray-600">For bulk orders or contracts: <a href="mailto:fuels@example.com" class="text-accent underline">fuels@example.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+    <script src="../shared.js"></script>
+
+    
+</body>
+</html>

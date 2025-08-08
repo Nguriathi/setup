@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Provisions | Mombasa Marine Supply</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C3E50',
+                        accent: '#F39C12',
+                        darkblue: '#1A2634',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .service-hero {
+            background-image: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        /* Modal: Responsive padding and scroll */
+        .modal-content {
+            width: 100%;
+            max-width: 48rem;
+            background: #fff;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 32px rgba(44,62,80,0.18);
+            padding: 0.5rem;
+            position: relative;
+        }
+        @media (max-width: 1023px) {
+            .modal-content {
+                max-height: 95vh;
+                overflow-y: auto;
+            }
+        }
+        @media (min-width: 640px) {
+            .modal-content { padding: 1.5rem; }
+        }
+        @media (min-width: 768px) {
+            .modal-content { padding: 2rem; }
+        }
+        @media (min-width: 1280px) {
+            .modal-content { padding: 2.5rem; }
+        }
+        /* Modal overlay always covers full screen */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (max-width: 1023px) {
+            .modal-overlay {
+                overflow: auto;
+            }
+        }
+        /* Modal close button always visible and clickable */
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: #6b7280;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .modal-close:hover { color: #F39C12; }
+        /* Prevent modal content from touching screen edges */
+        @media (max-width: 639px) {
+            .modal-content { margin: 1rem; }
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <div id="header"></div>
+
+    <!-- Technical Equipment Hero -->
+    <section class="service-hero text-white min-h-screen flex items-center py-20 md:py-32" style="background-image: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('/media/images/technical header.jpg');">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Technical Equipment Supply</h1>
+                <p class="text-xl mb-8">Comprehensive marine hardware and spare parts for all vessel types in Mombasa Port</p>
+                
+                <div class="bg-darkblue p-6 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">500+</p>
+                        <p>Parts in Stock</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">24/7</p>
+                        <p>Urgent Support</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-accent font-bold text-2xl">1hr</p>
+                        <p>Emergency Response</p>
+                    </div>
+                </div>
+                
+                <a href="../index.html#contact" class="bg-accent text-primary px-8 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">Request Equipment</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Equipment Details -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+                    <img src="/media/images/technical 2.jpg" 
+                         alt="Marine Technical Equipment" class="w-full rounded-lg shadow-lg">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 text-primary">Our Technical Equipment</h2>
+                    <p class="text-gray-600 mb-6">We stock an extensive range of marine hardware and spare parts to keep your vessel operational. Our technical specialists can source even the hardest-to-find components from our global network of suppliers.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Deck Equipment</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Mooring ropes, shackles, winches, anchors, fenders</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Engine Spares</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Filters, gaskets, seals, valves, bearings for all major brands</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Safety Gear</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Life jackets, fire extinguishers, EPIRBs, immersion suits</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-start mb-2">
+                                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                                <h3 class="font-semibold">Navigation Parts</h3>
+                            </div>
+                            <p class="text-gray-600 pl-6">Radar components, GPS antennas, AIS transceivers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Support Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Technical Support Services</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="service-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <i class="fas fa-tools text-accent text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Onboard Assistance</h3>
+                    <p class="text-gray-600">Our certified marine engineers can provide onboard technical support for urgent repairs and installations.</p>
+                </div>
+                
+                <div class="service-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <i class="fas fa-shipping-fast text-accent text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Urgent Delivery</h3>
+                    <p class="text-gray-600">Priority delivery of critical parts with dedicated logistics team to minimize vessel downtime.</p>
+                </div>
+                
+                <div class="service-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <i class="fas fa-search text-accent text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Parts Sourcing</h3>
+                    <p class="text-gray-600">Global network to locate and deliver even obsolete or hard-to-find marine components.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Ordering Process -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Emergency Request Process</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <!-- Timeline -->
+                    <div class="border-l-2 border-accent absolute h-full top-0 left-4"></div>
+                    
+                    <!-- Timeline items -->
+                    <div class="relative mb-8 pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <span class="text-primary font-bold">1</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Emergency Contact</h3>
+                        <p class="text-gray-600">Call our 24/7 emergency line with your part number or detailed description.</p>
+                    </div>
+                    
+                    <div class="relative mb-8 pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <span class="text-primary font-bold">2</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Technical Verification</h3>
+                        <p class="text-gray-600">Our engineers verify part specifications and check stock availability.</p>
+                    </div>
+                    
+                    <div class="relative mb-8 pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <span class="text-primary font-bold">3</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Immediate Dispatch</h3>
+                        <p class="text-gray-600">Urgent parts dispatched within 1 hour for critical situations.</p>
+                    </div>
+                    
+                    <div class="relative pl-12">
+                        <div class="absolute left-0 bg-accent rounded-full w-8 h-8 flex items-center justify-center">
+                            <span class="text-primary font-bold">4</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Onboard Support</h3>
+                        <p class="text-gray-600">Optional technical assistance available for installation and troubleshooting.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <a href="#contact" class="bg-accent text-primary px-8 py-3 rounded-md font-bold inline-block hover:bg-yellow-600 transition">Request Emergency Support</a>
+                    <p class="mt-4 text-gray-600">For non-urgent requests: <a href="mailto:technical@example.com" class="text-accent underline">technical@example.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mombasa Marine Supply | Professional Ship Chandlery Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C3E50',
+                        accent: '#F39C12',
+                        darkblue: '#1A2634',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('https://images.unsplash.com/photo-1581092921461-39b8d5048a82?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .category-card {
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .maritime-icon {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .stats-container {
+            background: rgba(26, 38, 52, 0.85);
+        }
+        
+        .port-service-image {
+            transition: all 0.3s ease;
+        }
+        
+        .port-service-image:hover {
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body class="font-sans">
+   
+
+    <div id="footer"></div>
+    <script src="../shared.js"></script>
+
+    
+</body>
+</html>

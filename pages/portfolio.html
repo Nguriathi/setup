@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Mombasa Marine Supply</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2C3E50',
+                        accent: '#F39C12',
+                        darkblue: '#1A2634',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('https://images.unsplash.com/photo-1581092921461-39b8d5048a82?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .portfolio-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        /* Modal: Responsive padding and scroll */
+        .modal-content {
+            width: 100%;
+            max-width: 48rem;
+            background: #fff;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 32px rgba(44,62,80,0.18);
+            padding: 0.5rem;
+            position: relative;
+        }
+        @media (max-width: 1023px) {
+            .modal-content {
+                max-height: 95vh;
+                overflow-y: auto;
+            }
+        }
+        @media (min-width: 640px) {
+            .modal-content { padding: 1.5rem; }
+        }
+        @media (min-width: 768px) {
+            .modal-content { padding: 2rem; }
+        }
+        @media (min-width: 1280px) {
+            .modal-content { padding: 2.5rem; }
+        }
+        /* Modal overlay always covers full screen */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (max-width: 1023px) {
+            .modal-overlay {
+                overflow: auto;
+            }
+        }
+        /* Modal close button always visible and clickable */
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: #6b7280;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .modal-close:hover { color: #F39C12; }
+        /* Prevent modal content from touching screen edges */
+        @media (max-width: 639px) {
+            .modal-content { margin: 1rem; }
+        }
+
+        /* Masonry Gallery Styles */
+        .masonry-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 220px;
+            gap: 2rem;
+        }
+        .gallery-item img {
+            border-radius: 1rem;
+            box-shadow: 0 4px 24px rgba(44,62,80,0.12);
+            background: #fff;
+            transition: transform 0.2s;
+        }
+        .gallery-item img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 32px rgba(44,62,80,0.18);
+        }
+        @media (max-width: 1023px) {
+            .masonry-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 180px;
+                gap: 1.5rem;
+            }
+        }
+        @media (max-width: 640px) {
+            .masonry-gallery {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 160px;
+                gap: 1rem;
+            }
+        }
+
+        /* Fullscreen Image Modal */
+        #gallery-modal {
+            animation: fadeIn 0.3s;
+        }
+        #gallery-modal-img {
+            box-shadow: 0 8px 32px rgba(44,62,80,0.32);
+            border-radius: 1rem;
+            background: #fff;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <div id="header"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white min-h-screen flex items-center py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Portfolio</h1>
+            <p class="text-xl mb-8">A showcase of our recent supply operations, vessel services, and marine solutions.</p>
+        </div>
+    </section>
+
+    <!-- Video Gallery -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-primary">Project Videos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Example Video 1 -->
+                <div class="rounded-lg overflow-hidden shadow-lg bg-gray-100">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe src="https://www.youtube.com/embed/Scxs7L0vhZ4" title="Vessel Supply Operation" frameborder="0" allowfullscreen class="w-full h-64"></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">Vessel Supply Operation</h3>
+                        <p class="text-gray-600 text-sm">Timelapse of a full provisioning for a container ship at Port of Mombasa.</p>
+                    </div>
+                </div>
+                <!-- Example Video 2 -->
+                <div class="rounded-lg overflow-hidden shadow-lg bg-gray-100">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe src="https://www.youtube.com/embed/2Xc9gXyf2G4" title="Deck Equipment Delivery" frameborder="0" allowfullscreen class="w-full h-64"></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">Deck Equipment Delivery</h3>
+                        <p class="text-gray-600 text-sm">Supplying technical equipment and spare parts to an offshore vessel.</p>
+                    </div>
+                </div>
+                <!-- Example Video 3 -->
+                <div class="rounded-lg overflow-hidden shadow-lg bg-gray-100">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe src="https://www.youtube.com/embed/5qap5aO4i9A" title="Fresh Provisions Delivery" frameborder="0" allowfullscreen class="w-full h-64"></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">Fresh Provisions Delivery</h3>
+                        <p class="text-gray-600 text-sm">Delivering fresh produce and supplies to a luxury yacht.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Project Gallery Section -->
+    <section id="gallery" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-primary">Project Gallery</h2>
+        <div class="masonry-gallery grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          <div class="gallery-item col-span-2 row-span-2">
+            <img src="../media/images/ship 1.jpg" alt="Ship 1" class="w-full h-full object-cover rounded-xl shadow-lg gallery-img" style="aspect-ratio: 3/4;">
+          </div>
+          <div class="gallery-item col-span-1 row-span-1">
+            <img src="../media/images/provision 1.jpg" alt="Provision 1" class="w-full h-full object-cover rounded-xl shadow-lg gallery-img" style="aspect-ratio: 4/3;">
+          </div>
+          <div class="gallery-item col-span-1 row-span-2">
+            <img src="../media/images/technical 1.jpg" alt="Technical 1" class="w-full h-full object-cover rounded-xl shadow-lg gallery-img" style="aspect-ratio: 2/3;">
+          </div>
+          <div class="gallery-item col-span-2 row-span-1">
+            <img src="../media/images/laundry.jpg" alt="Laundry" class="w-full h-full object-cover rounded-xl shadow-lg gallery-img" style="aspect-ratio: 16/9;">
+          </div>
+          <div class="gallery-item col-span-1 row-span-1">
+            <img src="../media/images/vegetables1.jpg" alt="Vegetables 1" class="w-full h-full object-cover rounded-xl shadow-lg gallery-img" style="aspect-ratio: 3/4;">
+          </div>
+          <div class="gallery-item col-span-1 row-span-2">
+            <img src="../media/images/ship 2.jpg" alt="Ship 2" class="w-full h-full object-cover rounded-xl shadow-lg gallery-img" style="aspect-ratio: 2/3;">
+          </div>
+          <div class="gallery-item col-span-2 row-span-1">
+            <img src="../media/images/provision 2.jpg" alt="Provision 2" class="w-full h-full object-cover rounded-xl shadow-lg gallery-img" style="aspect-ratio: 16/9;">
+          </div>
+          <div class="gallery-item col-span-1 row-span-1">
+            <img src="../media/images/technical 2.jpg" alt="Technical 2" class="w-full h-full object-cover rounded-xl shadow-lg gallery-img" style="aspect-ratio: 4/3;">
+          </div>
+          <div class="gallery-item col-span-1 row-span-1">
+            <img src="../media/images/dry stores2.jpg" alt="Dry Stores 2" class="w-full h-full object-cover rounded-xl shadow-lg gallery-img" style="aspect-ratio: 3/4;">
+          </div>
+          <div class="gallery-item col-span-2 row-span-1">
+            <img src="../media/images/vegetables4.jpg" alt="Vegetables 4" class="w-full h-full object-cover rounded-xl shadow-lg gallery-img" style="aspect-ratio: 16/9;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fullscreen Image Modal -->
+    <div id="gallery-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-[9999] hidden">
+      <button id="close-gallery-modal" class="absolute top-8 right-8 text-white text-4xl bg-black/40 rounded-full p-2 hover:bg-black/70 focus:outline-none">&times;</button>
+      <img id="gallery-modal-img" src="" alt="Gallery Fullscreen" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain">
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+    <script src="../shared.js"></script>
+
+    
+
+    <script>
+        
+
+        // Fullscreen modal logic
+        const galleryImgs = document.querySelectorAll('.gallery-img');
+        const modal = document.getElementById('gallery-modal');
+        const modalImg = document.getElementById('gallery-modal-img');
+        const closeModalBtn = document.getElementById('close-gallery-modal');
+        galleryImgs.forEach(img => {
+          img.addEventListener('click', function() {
+            modalImg.src = img.src;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+          });
+        });
+        function closeGalleryModal() {
+          modal.classList.add('hidden');
+          modalImg.src = '';
+          document.body.style.overflow = '';
+        }
+        closeModalBtn.addEventListener('click', closeGalleryModal);
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) closeGalleryModal();
+        });
+        document.addEventListener('keydown', function(e) {
+          if (!modal.classList.contains('hidden') && (e.key === 'Escape' || e.key === 'Esc')) {
+            closeGalleryModal();
+          }
+        });
+    </script>
+</body>
+</html>
