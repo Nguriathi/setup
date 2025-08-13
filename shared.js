@@ -443,12 +443,12 @@ function injectMobileSidebarMenu() {
         <button id="mobile-sidebar-close"><i class="fas fa-times"></i></button>
       </div>
       <nav class="mobile-sidebar-nav">
-        <a href="/index.html">Home</a>
-        <a href="/index.html#services">Services</a>
-        <a href="/index.html#equipment">Equipment</a>
-        <a href="/index.html#port-services">Port Services</a>
-        <a href="/index.html#about">About</a>
-        <a href="/index.html#contact">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#equipment">Equipment</a>
+        <a href="index.html#port-services">Port Services</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
       </nav>
       <div class="mobile-sidebar-phone">
         <i class="fas fa-phone"></i>
@@ -522,7 +522,7 @@ function injectMobileSidebarMenu() {
     if (e.key === 'Enter') {
       const q = this.value.trim().toLowerCase();
       if (q) {
-        window.location.href = '/index.html#search?q=' + encodeURIComponent(q);
+        window.location.href = 'index.html#search?q=' + encodeURIComponent(q);
         closeSidebar();
       }
     }
@@ -632,12 +632,12 @@ function injectResponsiveNavbar() {
       </div>
       <div class="responsive-sidebar-content" style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 1.5rem; margin-top: 2rem;">
         <nav class="responsive-sidebar-nav" style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); width: 100%;">
-          <a href="/index.html">Home</a>
-          <a href="/index.html#services">Services</a>
-          <a href="/index.html#equipment">Equipment</a>
-          <a href="/index.html#port-services">Port Services</a>
-          <a href="/index.html#about">About</a>
-          <a href="/index.html#contact">Contact</a>
+          <a href="index.html">Home</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#equipment">Equipment</a>
+          <a href="index.html#port-services">Port Services</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#contact">Contact</a>
         </nav>
         <div class="responsive-sidebar-phone" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem; font-size: 1.1rem; margin-bottom: 2rem; color: #fff; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); width: 100%;">
           <i class="fas fa-phone"></i>
@@ -729,7 +729,7 @@ function injectResponsiveNavbar() {
     if (e.key === 'Enter') {
       const q = this.value.trim().toLowerCase();
       if (q) {
-        window.location.href = '/index.html#search?q=' + encodeURIComponent(q);
+        window.location.href = 'index.html#search?q=' + encodeURIComponent(q);
         closeSidebar();
       }
     }
@@ -741,3 +741,4 @@ function injectResponsiveNavbar() {
 }
 
 window.addEventListener('DOMContentLoaded', injectResponsiveNavbar);
+
